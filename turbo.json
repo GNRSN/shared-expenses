@@ -52,9 +52,10 @@
     }
   },
   "globalEnv": [
-    "POSTGRES_URL",
-    "AUTH_DISCORD_ID",
-    "AUTH_DISCORD_SECRET",
+    "TURSO_DATABASE_URL",
+    "TURSO_AUTH_TOKEN",
+    "AUTH_GITHUB_ID",
+    "AUTH_GITHUB_SECRET",
     "AUTH_REDIRECT_PROXY_URL",
     "AUTH_SECRET",
     "PORT"
