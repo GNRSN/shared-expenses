@@ -1,9 +1,4 @@
 import type { Config } from "drizzle-kit";
-import dotenv from "dotenv";
-
-dotenv.config({
-  path: ".env.local",
-});
 
 export default {
   schema: "./src/schema.ts",
@@ -17,4 +12,3 @@ export default {
   verbose: true,
   strict: true,
 } satisfies Config;
-
