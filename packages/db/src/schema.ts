@@ -1,5 +1,5 @@
 // Lets see if this is needed/useful
-import type { AdapterAccountType } from "next-auth/adapters";
+// import type { AdapterAccountType } from "next-auth/adapters";
 import { createId } from "@paralleldrive/cuid2";
 import { relations, sql } from "drizzle-orm";
 import {
@@ -11,20 +11,20 @@ import {
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+/**
+ * TODO: Configure timestamps to fit a format we like, the docs are a bit confusing
+ * regarding integer { mode: timestamp_ms } vs text with CURRENT_TIMETAMP default
+ * https://github.com/drizzle-team/drizzle-orm/issues/1105
+ */
+
 export const Post = sqliteTable("post", {
   id: text("id").notNull().primaryKey().$default(createId),
   title: text("name", { length: 256 }).notNull(),
   content: text("content").notNull(),
-  createdAt: integer("created_at")
+  createdAt: text("created_at")
     .notNull()
     .default(sql`(CURRENT_TIMESTAMP)`),
-  updatedAt: integer(
-    "updatedAt",
-    //   {
-    //   mode: "date",
-    //   withTimezone: true,
-    // }
-  ).$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  updatedAt: text("updatedAt").$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
 });
 
 export const CreatePostSchema = createInsertSchema(Post, {
@@ -40,14 +40,11 @@ export const User = sqliteTable("user", {
   id: text("id").notNull().primaryKey().$default(createId),
   name: text("name", { length: 255 }),
   email: text("email", { length: 255 }).notNull(),
-  emailVerified: integer(
-    "emailVerified",
-    //   {
-    //   mode: "date",
-    //   withTimezone: true,
-    // }
-  ),
+  emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image", { length: 255 }),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .default(sql`(CURRENT_TIMESTAMP)`)
+    .notNull(),
 });
 
 export const UserRelations = relations(User, ({ many }) => ({
@@ -89,13 +86,7 @@ export const Session = sqliteTable("session", {
   userId: text("userId")
     .notNull()
     .references(() => User.id, { onDelete: "cascade" }),
-  expires: integer(
-    "expires",
-    //   {
-    //   mode: "date",
-    //   withTimezone: true,
-    // }
-  ).notNull(),
+  expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
 });
 
 export const SessionRelations = relations(Session, ({ one }) => ({
