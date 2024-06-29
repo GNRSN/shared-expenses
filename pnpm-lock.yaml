@@ -325,8 +325,8 @@ importers:
         specifier: 0.32.0
         version: 0.32.0
       '@auth/drizzle-adapter':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: 1.4.1
+        version: 1.4.1
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
@@ -368,7 +368,7 @@ importers:
   packages/db:
     dependencies:
       '@libsql/client':
-        specifier: ^0.7.0
+        specifier: 0.7.0
         version: 0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       '@paralleldrive/cuid2':
         specifier: 2.2.2
@@ -377,13 +377,13 @@ importers:
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
       drizzle-orm:
-        specifier: ^0.31.2
+        specifier: 0.31.2
         version: 0.31.2(@libsql/client@0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.3))(@neondatabase/serverless@0.7.2)(@planetscale/database@1.18.0)(@types/pg@8.6.6)(@types/react@18.3.3)(@vercel/postgres@0.8.0)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1)
       drizzle-zod:
-        specifier: ^0.5.1
+        specifier: 0.5.1
         version: 0.5.1(drizzle-orm@0.31.2(@libsql/client@0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.3))(@neondatabase/serverless@0.7.2)(@planetscale/database@1.18.0)(@types/pg@8.6.6)(@types/react@18.3.3)(@vercel/postgres@0.8.0)(mysql2@3.9.7)(postgres@3.4.4)(react@18.3.1))(zod@3.23.8)
       libsql:
-        specifier: ^0.3.19
+        specifier: 0.3.19
         version: 0.3.19
       zod:
         specifier: ^3.23.8
@@ -525,7 +525,7 @@ importers:
         version: 7.34.1(eslint@9.4.0)
       eslint-plugin-react-hooks:
         specifier: rc
-        version: 5.1.0-rc-e02baf6c92-20240627(eslint@9.4.0)
+        version: 5.1.0-rc-58af67a8f8-20240628(eslint@9.4.0)
       eslint-plugin-turbo:
         specifier: ^2.0.3
         version: 2.0.3(eslint@9.4.0)
@@ -631,8 +631,22 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/drizzle-adapter@1.2.0':
-    resolution: {integrity: sha512-95LHWlgtR4rQeHy4bACiVgTZdWkkEpVXYJim1IqbF1Hy0MnnMalmfGuIlNcOi64+6iC17j5FkDsMchqGwvj2Dg==}
+  '@auth/core@0.34.1':
+    resolution: {integrity: sha512-tuYU2VIbI8rFbkSwP710LmybB2FXJsPN7j3sjRVfN9SXVQBK2ej6LdewQaofpBGp4Mk+cC2UeiGNH0or4tgaeA==}
+    peerDependencies:
+      '@simplewebauthn/browser': ^9.0.1
+      '@simplewebauthn/server': ^9.0.2
+      nodemailer: ^6.8.0
+    peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
+      nodemailer:
+        optional: true
+
+  '@auth/drizzle-adapter@1.4.1':
+    resolution: {integrity: sha512-pUC8D0jfANDvThH1CrcUXmjZyF98ccVMY3iEZUQzUTr0U1csuppvRoz5JccOLzjv3tu+Nb9Qd6SvrmmsnuYgSw==}
 
   '@babel/code-frame@7.10.4':
     resolution: {integrity: sha512-vG6SvB6oYEhvgisZNFRmRCUkLz11c7rp+tbNTynGqc6mS1d5ATd/sGyV6W0KZZnXRKMTzZDRgQT3Ou9jhpAfUg==}
@@ -4376,8 +4390,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
-  eslint-plugin-react-hooks@5.1.0-rc-e02baf6c92-20240627:
-    resolution: {integrity: sha512-0r2ccsIyerzFsMtWQG/QJsb64d6rgqNX/TA/xBNwGo8LThAATx9Jo8C82q29AJCyPsvdj8PbyOwCP1mCzniYGQ==}
+  eslint-plugin-react-hooks@5.1.0-rc-58af67a8f8-20240628:
+    resolution: {integrity: sha512-0ptDUmMSKIQhyh5lO8hymsp9t5wI6LFD6FrweUVXKRxGa0KejI/r1xk3DOzmd6ca+l28sF8vCuS8FN2L2tSWkg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -6148,8 +6162,8 @@ packages:
     engines: {node: ^14.16.0 || >=16.10.0}
     hasBin: true
 
-  oauth4webapi@2.10.3:
-    resolution: {integrity: sha512-9FkXEXfzVKzH63GUOZz1zMr3wBaICSzk6DLXx+CGdrQ10ItNk2ePWzYYc1fdmKq1ayGFb2aX97sRCoZ2s0mkDw==}
+  oauth4webapi@2.11.1:
+    resolution: {integrity: sha512-aNzOnL98bL6izG97zgnZs1PFEyO4WDVRhz2Pd066NPak44w5ESLRCYmJIyey8avSBPOMtBjhF3ZDDm7bIb7UOg==}
 
   ob1@0.80.7:
     resolution: {integrity: sha512-+m1cCNckRtDEnurNSVqywpN6LhFWc1Z3MdX7PX7boCwEdSzh4evlUjBIUzao1lBOpB7G5FvwfFagTVQGCMa0Yw==}
@@ -8143,13 +8157,23 @@ snapshots:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       jose: 5.2.3
-      oauth4webapi: 2.10.3
+      oauth4webapi: 2.11.1
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
 
-  '@auth/drizzle-adapter@1.2.0':
+  '@auth/core@0.34.1':
     dependencies:
-      '@auth/core': 0.32.0
+      '@panva/hkdf': 1.1.1
+      '@types/cookie': 0.6.0
+      cookie: 0.6.0
+      jose: 5.2.3
+      oauth4webapi: 2.11.1
+      preact: 10.11.3
+      preact-render-to-string: 5.2.3(preact@10.11.3)
+
+  '@auth/drizzle-adapter@1.4.1':
+    dependencies:
+      '@auth/core': 0.34.1
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -12495,7 +12519,7 @@ snapshots:
       object.entries: 1.1.8
       object.fromentries: 2.0.8
 
-  eslint-plugin-react-hooks@5.1.0-rc-e02baf6c92-20240627(eslint@9.4.0):
+  eslint-plugin-react-hooks@5.1.0-rc-58af67a8f8-20240628(eslint@9.4.0):
     dependencies:
       eslint: 9.4.0
 
@@ -14635,7 +14659,7 @@ snapshots:
       pathe: 1.1.2
       ufo: 1.5.3
 
-  oauth4webapi@2.10.3: {}
+  oauth4webapi@2.11.1: {}
 
   ob1@0.80.7: {}
 
