@@ -1,10 +1,14 @@
 # Shared expenses
 
-Scaffolded from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo)
+Scaffolded from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) template
 
 ## Required tooling
 
 - [pnpm](https://pnpm.io/installation)
+
+## Setup
+
+- Install dependencies: `pnpm i`
 
 ### Recommended tooling
 
@@ -13,7 +17,3 @@ Scaffolded from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo)
 - Tailwind LSP for editor
 
 - Prettier (formatter) for editor
-
-## Setup
-
-- Install dependencies: `pnpm i`
