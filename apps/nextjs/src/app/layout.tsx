@@ -12,24 +12,21 @@ import "~/app/globals.css";
 
 import { env } from "~/env";
 
+const PRODUCTION_DOMAINE = "shared-expensesnext-js-gnrsns-projects.vercel.app";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
-      ? "https://turbo.t3.gg"
+      ? PRODUCTION_DOMAINE
       : "http://localhost:3000",
   ),
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title: "Shared expenses",
+  description: "",
   openGraph: {
-    title: "Create T3 Turbo",
-    description: "Simple monorepo with shared backend for web & mobile apps",
-    url: "https://create-t3-turbo.vercel.app",
-    siteName: "Create T3 Turbo",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@jullerino",
-    creator: "@jullerino",
+    title: "Shared expenses",
+    description: "",
+    url: "https://" + PRODUCTION_DOMAINE,
+    siteName: "Shared expenses",
   },
 };
 
