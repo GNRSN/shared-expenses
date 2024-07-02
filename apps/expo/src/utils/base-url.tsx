@@ -22,5 +22,6 @@ export const getBaseUrl = () => {
       "Failed to get localhost. Please point to your production server.",
     );
   }
+  // TODO: Replace this with auth-proxy?
   return `http://${localhost}:3000`;
 };
