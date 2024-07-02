@@ -12,7 +12,8 @@ import "~/app/globals.css";
 
 import { env } from "~/env";
 
-const PRODUCTION_DOMAINE = "shared-expensesnext-js-gnrsns-projects.vercel.app";
+const PRODUCTION_DOMAINE =
+  "https://shared-expensesnext-js-gnrsns-projects.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shared expenses",
     description: "",
-    url: "https://" + PRODUCTION_DOMAINE,
+    url: PRODUCTION_DOMAINE,
     siteName: "Shared expenses",
   },
 };
