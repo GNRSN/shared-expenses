@@ -10,7 +10,7 @@ export default [
       "react-hooks": hooksPlugin,
     },
     rules: {
-      ...reactPlugin.configs["jsx-runtime"].rules,
+      ...reactPlugin.configs.recommended.rules,
       ...hooksPlugin.configs.recommended.rules,
     },
     languageOptions: {
