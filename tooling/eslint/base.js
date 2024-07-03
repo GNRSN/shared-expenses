@@ -1,6 +1,7 @@
 /// <reference types="./types.d.ts" />
 
 import eslint from "@eslint/js";
+import stylisticPlugin from "@stylistic/eslint-plugin";
 import importPlugin from "eslint-plugin-import";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
@@ -42,6 +43,7 @@ export default tseslint.config(
     plugins: {
       import: importPlugin,
       turbo: turboPlugin,
+      "@stylistic": stylisticPlugin,
     },
     extends: [
       eslint.configs.recommended,
@@ -71,6 +73,7 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-non-null-assertion": "error",
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+      "@stylistic/semi": ["warn"],
     },
   },
   {

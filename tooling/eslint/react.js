@@ -1,3 +1,4 @@
+import { fixupPluginRules } from "@eslint/compat";
 import reactPlugin from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
 
@@ -6,16 +7,24 @@ export default [
   {
     files: ["**/*.ts", "**/*.tsx"],
     plugins: {
-      react: reactPlugin,
+      // fixes: https://eslint.org/docs/latest/use/troubleshooting/v9-rule-api-changes
+      react: fixupPluginRules(reactPlugin),
       "react-hooks": hooksPlugin,
     },
     rules: {
-      ...reactPlugin.configs["jsx-runtime"].rules,
+      ...reactPlugin.configs.recommended.rules,
       ...hooksPlugin.configs.recommended.rules,
+      "react/prop-types": "off",
     },
     languageOptions: {
       globals: {
         React: "writable",
+      },
+    },
+    settings: {
+      react: {
+        // Only necessary to suppress warning
+        version: "detect",
       },
     },
   },
