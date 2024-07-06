@@ -32,5 +32,8 @@
     "turbo": "^2.0.3",
     "typescript": "^5.4.5"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@acme/prettier-config",
+  "lint-staged": {
+    "*": "prettier --ignore-unknown --write"
+  }
 }
