@@ -64,17 +64,27 @@ export const Group = sqliteTable("userGroup", {
   createdAt,
 });
 
+export const CreateGroupSchema = createInsertSchema(Group, {
+  title: z.string().max(256),
+}).omit({
+  id: true,
+  createdAt: true,
+});
+
 export const GroupRelations = relations(Group, ({ many }) => ({
   usersToGroups: many(UsersToGroups),
 }));
 
+/**
+ * REVIEW: Users-to-Groups relation modeled after https://orm.drizzle.team/docs/rqb#declaring-relations
+ */
 export const UsersToGroups = sqliteTable(
   "users_to_groups",
   {
-    userId: integer("user_id")
+    userId: text("id")
       .notNull()
       .references(() => User.id),
-    groupId: integer("group_id")
+    groupId: text("id")
       .notNull()
       .references(() => Group.id),
   },
@@ -83,9 +93,11 @@ export const UsersToGroups = sqliteTable(
   }),
 );
 
-/**
- * REVIEW: Users-to-Groups relation modeled after https://orm.drizzle.team/docs/rqb#declaring-relations
- */
+export const CreateUserGroupRelationSchema = createInsertSchema(UsersToGroups, {
+  userId: z.string().cuid(),
+  groupId: z.string().cuid(),
+});
+
 export const UsersToGroupsRelations = relations(UsersToGroups, ({ one }) => ({
   group: one(Group, {
     fields: [UsersToGroups.groupId],
