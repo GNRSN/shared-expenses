@@ -13,18 +13,26 @@ import { z } from "zod";
 
 /**
  * TODO: Configure timestamps to fit a format we like, the docs are a bit confusing
- * regarding integer { mode: timestamp_ms } vs text with CURRENT_TIMETAMP default
+ * regarding integer { mode: timestamp_ms } vs text with CURRENT_TIMESTAMP default
  * https://github.com/drizzle-team/drizzle-orm/issues/1105
+ */
+const createdAt = text("created_at")
+  .default(sql`(CURRENT_TIMESTAMP)`)
+  .notNull();
+
+const updatedAt = text("updatedAt").$onUpdate(() => sql`(CURRENT_TIMESTAMP)`);
+
+/**
+ * REVIEW: Nit: Naming convention, plural (table) or singular (model)?
+ * REVIEW: Nit2: Naming convention, should columns be named in snake or camel case?
  */
 
 export const Post = sqliteTable("post", {
   id: text("id").notNull().primaryKey().$default(createId),
   title: text("name", { length: 256 }).notNull(),
   content: text("content").notNull(),
-  createdAt: text("created_at")
-    .notNull()
-    .default(sql`(CURRENT_TIMESTAMP)`),
-  updatedAt: text("updatedAt").$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  createdAt,
+  updatedAt,
 });
 
 export const CreatePostSchema = createInsertSchema(Post, {
@@ -42,13 +50,63 @@ export const User = sqliteTable("user", {
   email: text("email", { length: 255 }).notNull(),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image", { length: 255 }),
-  createdAt: integer("created_at", { mode: "timestamp_ms" })
-    .default(sql`(CURRENT_TIMESTAMP)`)
-    .notNull(),
+  createdAt,
 });
 
 export const UserRelations = relations(User, ({ many }) => ({
   accounts: many(Account),
+  usersToGroups: many(UsersToGroups),
+}));
+
+export const Group = sqliteTable("userGroup", {
+  id: text("id").notNull().primaryKey().$default(createId),
+  title: text("title", { length: 256 }).notNull(),
+  createdAt,
+});
+
+export const CreateGroupSchema = createInsertSchema(Group, {
+  title: z.string().max(256),
+}).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const GroupRelations = relations(Group, ({ many }) => ({
+  usersToGroups: many(UsersToGroups),
+}));
+
+/**
+ * REVIEW: Users-to-Groups relation modeled after https://orm.drizzle.team/docs/rqb#declaring-relations
+ */
+export const UsersToGroups = sqliteTable(
+  "users_to_groups",
+  {
+    userId: text("id")
+      .notNull()
+      .references(() => User.id),
+    groupId: text("id")
+      .notNull()
+      .references(() => Group.id),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.userId, t.groupId] }),
+  }),
+);
+
+export const CreateUserGroupRelationSchema = createInsertSchema(UsersToGroups, {
+  userId: z.string().cuid(),
+  groupId: z.string().cuid(),
+});
+
+export const UsersToGroupsRelations = relations(UsersToGroups, ({ one }) => ({
+  group: one(Group, {
+    fields: [UsersToGroups.groupId],
+    references: [Group.id],
+  }),
+  user: one(User, {
+    fields: [UsersToGroups.userId],
+    references: [User.id],
+  }),
 }));
 
 export const Account = sqliteTable(
