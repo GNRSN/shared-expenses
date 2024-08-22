@@ -25,6 +25,7 @@ export const isSecureContext = env.NODE_ENV !== "development";
 
 export const authConfig = {
   adapter,
+  secret: env.AUTH_SECRET,
   providers: [Github],
   // In development, we need to skip checks to allow Expo to work
   ...(!isSecureContext
@@ -33,7 +34,6 @@ export const authConfig = {
         trustHost: true,
       }
     : {}),
-  secret: env.AUTH_SECRET,
   callbacks: {
     session: (opts) => {
       if (!("user" in opts))
@@ -46,6 +46,10 @@ export const authConfig = {
           id: opts.user.id,
         },
       };
+    },
+    authorized: ({ auth }) => {
+      // Logged in users are authenticated, otherwise redirect to login page
+      return !!auth;
     },
   },
 } satisfies NextAuthConfig;
