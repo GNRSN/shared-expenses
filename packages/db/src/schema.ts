@@ -55,12 +55,18 @@ export const User = sqliteTable("user", {
 
 export const UserRelations = relations(User, ({ many }) => ({
   accounts: many(Account),
-  usersToGroups: many(UsersToGroups),
+  userToGroup: many(UserToGroup),
 }));
 
-export const Group = sqliteTable("userGroup", {
+export const Group = sqliteTable("user_group", {
   id: text("id").notNull().primaryKey().$default(createId),
   title: text("title", { length: 256 }).notNull(),
+  owner: text("owner_id")
+    .notNull()
+    .references(() => User.id, {
+      // TODO: How to handle deletions?
+      // onDelete: "cascade",
+    }),
   createdAt,
 });
 
@@ -69,22 +75,23 @@ export const CreateGroupSchema = createInsertSchema(Group, {
 }).omit({
   id: true,
   createdAt: true,
+  owner: true,
 });
 
 export const GroupRelations = relations(Group, ({ many }) => ({
-  usersToGroups: many(UsersToGroups),
+  userToGroup: many(UserToGroup),
 }));
 
 /**
  * REVIEW: Users-to-Groups relation modeled after https://orm.drizzle.team/docs/rqb#declaring-relations
  */
-export const UsersToGroups = sqliteTable(
-  "users_to_groups",
+export const UserToGroup = sqliteTable(
+  "user_to_group",
   {
-    userId: text("id")
+    userId: text("userId")
       .notNull()
       .references(() => User.id),
-    groupId: text("id")
+    groupId: text("groupId")
       .notNull()
       .references(() => Group.id),
   },
@@ -93,18 +100,18 @@ export const UsersToGroups = sqliteTable(
   }),
 );
 
-export const CreateUserGroupRelationSchema = createInsertSchema(UsersToGroups, {
+export const CreateUserGroupRelationSchema = createInsertSchema(UserToGroup, {
   userId: z.string().cuid(),
   groupId: z.string().cuid(),
 });
 
-export const UsersToGroupsRelations = relations(UsersToGroups, ({ one }) => ({
+export const UserToGroupRelations = relations(UserToGroup, ({ one }) => ({
   group: one(Group, {
-    fields: [UsersToGroups.groupId],
+    fields: [UserToGroup.groupId],
     references: [Group.id],
   }),
   user: one(User, {
-    fields: [UsersToGroups.userId],
+    fields: [UserToGroup.userId],
     references: [User.id],
   }),
 }));

@@ -8,7 +8,7 @@ export default {
     url: process.env.TURSO_DATABASE_URL! as string,
     authToken: process.env.TURSO_AUTH_TOKEN! as string,
   },
-  out: "./drizzle",
+  // out: "./drizzle",
   verbose: true,
   strict: true,
 } satisfies Config;

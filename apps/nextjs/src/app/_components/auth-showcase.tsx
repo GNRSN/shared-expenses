@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { auth, signIn, signOut } from "@acme/auth";
 import { Button } from "@acme/ui/button";
 
@@ -25,6 +27,8 @@ export async function AuthShowcase() {
       <p className="text-center text-2xl">
         <span>Logged in as {session.user.name}</span>
       </p>
+
+      <Link href="/groups">Groups</Link>
 
       <form>
         <Button
