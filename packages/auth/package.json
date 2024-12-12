@@ -19,24 +19,24 @@
   },
   "dependencies": {
     "@acme/db": "workspace:*",
-    "@auth/core": "0.32.0",
-    "@auth/drizzle-adapter": "1.4.1",
-    "@t3-oss/env-nextjs": "^0.10.1",
-    "next": "15.1.0",
-    "next-auth": "5.0.0-beta.19",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "zod": "^3.23.8"
+    "@auth/core": "catalog:",
+    "@auth/drizzle-adapter": "catalog:",
+    "@t3-oss/env-nextjs": "catalog:",
+    "next": "catalog:",
+    "next-auth": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@types/react": "19.0.1",
-    "@types/react-dom": "19.0.2",
-    "eslint": "^9.16.0",
-    "prettier": "^3.3.1",
-    "typescript": "5.7.2"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config"
 }

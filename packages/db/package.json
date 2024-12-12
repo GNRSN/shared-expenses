@@ -32,11 +32,11 @@
   "dependencies": {
     "@libsql/client": "0.7.0",
     "@paralleldrive/cuid2": "2.2.2",
-    "@t3-oss/env-nextjs": "^0.10.1",
+    "@t3-oss/env-nextjs": "catalog:",
     "drizzle-orm": "0.31.2",
     "drizzle-zod": "0.5.1",
     "libsql": "0.3.19",
-    "zod": "^3.23.8"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
@@ -44,9 +44,9 @@
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "^7.4.2",
     "drizzle-kit": "^0.22.6",
-    "eslint": "^9.16.0",
-    "prettier": "^3.3.1",
-    "typescript": "5.7.2"
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config"
 }
