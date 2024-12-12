@@ -18,7 +18,7 @@
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/node": "^20.12.9",
-    "eslint": "^9.4.0",
+    "eslint": "^9.16.0",
     "h3": "^1.11.1",
     "nitropack": "^2.9.6",
     "prettier": "^3.3.1",
