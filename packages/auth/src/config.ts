@@ -8,6 +8,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Github from "next-auth/providers/github";
 
 import { db } from "@acme/db/client";
+import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
 
@@ -19,7 +20,13 @@ declare module "next-auth" {
   }
 }
 
-const adapter = DrizzleAdapter(db);
+// TODO: Do we need to get this working or not?
+// @see https://authjs.dev/getting-started/adapters/drizzle
+const adapter = DrizzleAdapter(db, {
+  usersTable: User,
+  accountsTable: Account,
+  sessionsTable: Session,
+});
 
 export const isSecureContext = env.NODE_ENV !== "development";
 
@@ -66,5 +73,6 @@ export const validateToken = async (
 };
 
 export const invalidateSessionToken = async (token: string) => {
-  await adapter.deleteSession?.(token);
+  const sessionToken = token.slice("Bearer ".length);
+  await adapter.deleteSession?.(sessionToken);
 };
