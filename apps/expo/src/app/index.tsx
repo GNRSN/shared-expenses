@@ -1,4 +1,6 @@
-import { useState } from "react";
+// REVIEW: Shouldn't need React import but probably broken due to React 19 not being supported
+// by expo yet, I think expo will be unusable for us until there is a new SDK version
+import React, { useState } from "react";
 import { Button, Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
@@ -23,7 +25,7 @@ function PostCard(props: {
           }}
         >
           <Pressable className="">
-            <Text className=" text-xl font-semibold text-primary">
+            <Text className="text-xl font-semibold text-primary">
               {props.post.title}
             </Text>
             <Text className="mt-2 text-foreground">{props.post.content}</Text>
@@ -54,7 +56,7 @@ function CreatePost() {
   return (
     <View className="mt-4 flex gap-2">
       <TextInput
-        className=" items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
+        className="items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
         value={title}
         onChangeText={setTitle}
         placeholder="Title"
@@ -65,7 +67,7 @@ function CreatePost() {
         </Text>
       )}
       <TextInput
-        className="items-center rounded-md border border-input bg-background px-3  text-lg leading-[1.25] text-foreground"
+        className="items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
         value={content}
         onChangeText={setContent}
         placeholder="Content"
