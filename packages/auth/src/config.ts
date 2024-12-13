@@ -20,8 +20,6 @@ declare module "next-auth" {
   }
 }
 
-// TODO: Do we need to get this working or not?
-// @see https://authjs.dev/getting-started/adapters/drizzle
 const adapter = DrizzleAdapter(db, {
   usersTable: User,
   accountsTable: Account,
