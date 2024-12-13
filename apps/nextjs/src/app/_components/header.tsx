@@ -9,7 +9,7 @@ export default async function Header() {
 
   return (
     <header className="w-full bg-primary text-primary-foreground shadow-md">
-      <nav className="items-left mx-auto flex p-6 shadow-lg md:justify-center  lg:px-8">
+      <nav className="items-left mx-auto flex p-6 shadow-lg md:justify-center lg:px-8">
         <div className="space-x-4 pr-4 md:flex lg:flex-1">
           <Link href="/">Home</Link>
         </div>
