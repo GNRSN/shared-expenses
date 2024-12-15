@@ -26,5 +26,13 @@
     "moduleResolution": "Bundler",
     "noEmit": true
   },
-  "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
+  "exclude": [
+    "${configDir}/node_modules",
+    "${configDir}/build",
+    "${configDir}/dist",
+    "${configDir}/.next",
+    "${configDir}/.expo",
+    "${configDir}/.turbo",
+    "${configDir}/.cache"
+  ]
 }
