@@ -1,3 +1,5 @@
+"use client";
+
 import { CreateGroupSchema } from "@acme/db/schema";
 import { Button } from "@acme/ui/button";
 import {
