@@ -85,6 +85,7 @@ export function PostList(props: {
   posts: Promise<RouterOutputs["post"]["all"]>;
 }) {
   // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
+  // NOTE: ^ This todo is from the starter
   const initialData = use(props.posts);
   const { data: posts } = api.post.all.useQuery(undefined, {
     initialData,

@@ -14,24 +14,24 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/compat": "1.1.0",
-    "@next/eslint-plugin-next": "15.0.0-rc.0",
-    "@stylistic/eslint-plugin": "2.1.0",
-    "babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-compiler": "0.0.0-experimental-0998c1e-20240625",
-    "eslint-plugin-react-hooks": "rc",
-    "eslint-plugin-turbo": "^2.0.3",
-    "typescript-eslint": "rc-v8"
+    "@eslint/compat": "1.2.4",
+    "@next/eslint-plugin-next": "15.1.0",
+    "@stylistic/eslint-plugin": "2.12.1",
+    "babel-plugin-react-compiler": "19.0.0-beta-37ed2a7-20241206",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react-compiler": "19.0.0-beta-37ed2a7-20241206",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "eslint-plugin-turbo": "2.3.3",
+    "typescript-eslint": "8.18.0"
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "eslint": "^9.4.0",
-    "prettier": "^3.3.1",
-    "typescript": "^5.4.5"
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config"
 }

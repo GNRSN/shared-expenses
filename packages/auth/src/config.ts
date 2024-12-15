@@ -8,6 +8,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Github from "next-auth/providers/github";
 
 import { db } from "@acme/db/client";
+import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
 
@@ -19,7 +20,11 @@ declare module "next-auth" {
   }
 }
 
-const adapter = DrizzleAdapter(db);
+const adapter = DrizzleAdapter(db, {
+  usersTable: User,
+  accountsTable: Account,
+  sessionsTable: Session,
+});
 
 export const isSecureContext = env.NODE_ENV !== "development";
 
@@ -29,7 +34,7 @@ export const authConfig = {
   // In development, we need to skip checks to allow Expo to work
   ...(!isSecureContext
     ? {
-        skipCSRFCheck: skipCSRFCheck,
+        skipCSRFCheck,
         trustHost: true,
       }
     : {}),
@@ -66,5 +71,6 @@ export const validateToken = async (
 };
 
 export const invalidateSessionToken = async (token: string) => {
-  await adapter.deleteSession?.(token);
+  const sessionToken = token.slice("Bearer ".length);
+  await adapter.deleteSession?.(sessionToken);
 };
