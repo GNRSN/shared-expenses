@@ -4,25 +4,25 @@
   "type": "module",
   "scripts": {
     "build": "nitro build",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "git clean -xdf .cache .nitro .output .turbo .vercel node_modules",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@auth/core": "0.32.0"
+    "@auth/core": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@types/node": "^20.12.9",
-    "eslint": "^9.4.0",
-    "h3": "^1.11.1",
-    "nitropack": "^2.9.6",
-    "prettier": "^3.3.1",
-    "typescript": "^5.4.5"
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "h3": "^1.13.0",
+    "nitropack": "^2.10.4",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config"
 }

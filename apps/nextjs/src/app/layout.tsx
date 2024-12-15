@@ -11,14 +11,15 @@ import { TRPCReactProvider } from "~/trpc/react";
 import "~/app/globals.css";
 
 import { env } from "~/env";
+import Header from "./_components/header";
 
-const PRODUCTION_DOMAINE =
+const PRODUCTION_DOMAIN =
   "https://shared-expensesnext-js-gnrsns-projects.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
-      ? PRODUCTION_DOMAINE
+      ? PRODUCTION_DOMAIN
       : "http://localhost:3000",
   ),
   title: "Shared expenses",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Shared expenses",
     description: "",
-    url: PRODUCTION_DOMAINE,
+    url: PRODUCTION_DOMAIN,
     siteName: "Shared expenses",
   },
 };
@@ -49,6 +50,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <Header />
+
           <TRPCReactProvider>{props.children}</TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
