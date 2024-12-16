@@ -7,7 +7,7 @@ import { CreateGroupSchema, Group, UserToGroup } from "@acme/db/schema";
 import { protectedProcedure } from "../trpc";
 
 export const groupsRouter = {
-  forUser: protectedProcedure.query(({ ctx }) => {
+  getForCurrentUser: protectedProcedure.query(({ ctx }) => {
     return ctx.db.query.UserToGroup.findMany({
       // REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
       where: eq(UserToGroup.userId, ctx.session.user.id),

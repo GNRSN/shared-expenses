@@ -7,7 +7,7 @@ import { GroupsList } from "./_components/GroupsList";
 export const runtime = "edge";
 
 export default function GroupsPage() {
-  const groups = api.groups.forUser();
+  const groups = api.groups.getForCurrentUser();
 
   return (
     <main className="container h-screen py-16">

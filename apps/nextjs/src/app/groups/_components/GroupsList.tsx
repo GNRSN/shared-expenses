@@ -7,10 +7,10 @@ import type { RouterOutputs } from "@acme/api";
 import { api } from "~/trpc/react";
 
 export function GroupsList(props: {
-  groups: Promise<RouterOutputs["groups"]["forUser"]>;
+  groups: Promise<RouterOutputs["groups"]["getForCurrentUser"]>;
 }) {
   const initialData = use(props.groups);
-  const { data: groups } = api.groups.forUser.useQuery(undefined, {
+  const { data: groups } = api.groups.getForCurrentUser.useQuery(undefined, {
     initialData,
   });
 
