@@ -1,12 +1,18 @@
 import { Suspense } from "react";
 
+import { auth } from "@acme/auth";
+
 import { api } from "~/trpc/server";
 import { CreateGroupForm } from "./_components/CreateGroupForm";
 import { GroupsList } from "./_components/GroupsList";
 
 export const runtime = "edge";
 
-export default function GroupsPage() {
+export default async function GroupsPage() {
+  const session = await auth();
+  // LATER: Make this some cool reusable full page splash screen
+  if (!session) return <div>You need to log in to display this page</div>;
+
   const groups = api.groups.getForCurrentUser();
 
   return (
