@@ -100,6 +100,8 @@ export const UserToGroup = sqliteTable(
   }),
 );
 
+// NOTE: Drizzle-zod 0.6.0 broke createInsertSchema when tsc declaration=true
+// @see https://github.com/drizzle-team/drizzle-orm/issues/3732
 export const CreateUserGroupRelationSchema = createInsertSchema(UserToGroup, {
   userId: z.string().cuid(),
   groupId: z.string().cuid(),
