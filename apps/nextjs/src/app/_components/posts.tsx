@@ -86,6 +86,10 @@ export function PostList(props: {
 }) {
   // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
   // NOTE: ^ This todo is from the starter
+  // They replaced it with a pre-fetch call but that caused extreme slowness for me
+  // with errors pointing to the cache being filled with something too big to
+  // serialize, even if I hardcoded an empty array to be returned
+  // likely trpc 11 isn't ready for that yet
   const initialData = use(props.posts);
   const { data: posts } = api.post.all.useQuery(undefined, {
     initialData,
