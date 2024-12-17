@@ -8,11 +8,23 @@ import { protectedProcedure } from "../trpc";
 
 export const groupsRouter = {
   getForCurrentUser: protectedProcedure.query(({ ctx }) => {
+    // REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
     return ctx.db.query.UserToGroup.findMany({
-      // REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
       where: eq(UserToGroup.userId, ctx.session.user.id),
       with: {
-        group: true,
+        group: {
+          with: {
+            // REVIEW: Is there a neater way to do this in drizzle?
+            // Where we can get users directly instead of traversing the relation
+            // (drizzle should know that this is a relation)
+            userToGroup: {
+              with: {
+                user: true,
+              },
+            },
+            // TODO: How do we get the owner as user?
+          },
+        },
       },
 
       // TODO: Order by recent activity, custom sorting by input?

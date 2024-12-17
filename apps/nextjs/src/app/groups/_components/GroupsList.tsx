@@ -21,7 +21,22 @@ export function GroupsList(props: {
       ) : (
         <div className="flex w-full flex-col gap-4">
           {groups.map((g) => {
-            return <div key={g.groupId}>{g.group.title}</div>;
+            return (
+              <div key={g.groupId}>
+                <div className="font-bold">{g.group.title}</div>
+
+                <div>
+                  {g.group.userToGroup.map((utg) => {
+                    return (
+                      <div key={utg.userId}>
+                        {utg.user.name}
+                        {utg.userId === g.group.owner && " (Owner)"}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
           })}
         </div>
       )}
