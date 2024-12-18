@@ -29,7 +29,7 @@ export function GroupsList(props: {
                   {g.group.userToGroup.map((utg) => {
                     return (
                       <div key={utg.userId}>
-                        {utg.user.name}
+                        • {utg.user.name}
                         {utg.userId === g.group.owner && " (Owner)"}
                       </div>
                     );
