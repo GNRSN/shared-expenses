@@ -58,7 +58,7 @@ export function CreateGroupForm() {
             </FormItem>
           )}
         />
-        <Button>Create</Button>
+        <Button type="submit">Create</Button>
       </form>
     </Form>
   );

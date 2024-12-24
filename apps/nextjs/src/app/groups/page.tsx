@@ -24,7 +24,7 @@ export default async function GroupsPage() {
 
         <CreateGroupForm />
 
-        <div className="w-full max-w-2xl overflow-y-scroll">
+        <div className="w-full max-w-2xl overflow-y-auto">
           <Suspense
             fallback={
               <div className="flex w-full flex-col gap-4">Loading...</div>
