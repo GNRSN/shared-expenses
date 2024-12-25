@@ -8,21 +8,27 @@ import { protectedProcedure } from "../trpc";
 
 export const groupsRouter = {
   getForCurrentUser: protectedProcedure.query(({ ctx }) => {
-    // REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
+    /**
+     *REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
+     *
+     * Where we can get users directly instead of traversing the relation
+     * (drizzle should know that this is a relation and not a regular record)
+     *
+     * What I'm after is that currently, members resolves to userToGroup.group.userToGroup.members[]
+     * I would prefer to simplify this to group.members[]
+     */
     return ctx.db.query.UserToGroup.findMany({
       where: eq(UserToGroup.userId, ctx.session.user.id),
+      columns: {},
       with: {
         group: {
           with: {
-            // REVIEW: Is there a neater way to do this in drizzle?
-            // Where we can get users directly instead of traversing the relation
-            // (drizzle should know that this is a relation)
             userToGroup: {
+              columns: {},
               with: {
                 user: true,
               },
             },
-            // TODO: How do we get the owner as user?
           },
         },
       },

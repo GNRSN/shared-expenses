@@ -12,9 +12,12 @@ export function GroupsList(props: {
   groups: Promise<RouterOutputs["groups"]["getForCurrentUser"]>;
 }) {
   const initialData = use(props.groups);
-  const { data: groups } = api.groups.getForCurrentUser.useQuery(undefined, {
-    initialData,
-  });
+  const { data: groupsForUser } = api.groups.getForCurrentUser.useQuery(
+    undefined,
+    {
+      initialData,
+    },
+  );
 
   const utils = api.useUtils();
   const deleteGroup = api.groups.deleteGroup.useMutation();
@@ -33,30 +36,30 @@ export function GroupsList(props: {
 
   return (
     <>
-      {!groups.length ? (
+      {!groupsForUser.length ? (
         <p className="text-center text-xl">No groups for user</p>
       ) : (
         <div className="flex w-full flex-col gap-4">
-          {groups.map((g) => {
+          {groupsForUser.map(({ group }) => {
             return (
-              <div key={g.groupId}>
-                <div className="font-bold">{g.group.title}</div>
+              <div key={group.id}>
+                <div className="font-bold">{group.title}</div>
 
                 <div>
-                  {g.group.userToGroup.map((utg) => {
-                    const userIsOwner = utg.userId === g.group.owner;
+                  {group.userToGroup.map(({ user }) => {
+                    const userIsOwner = user.id === group.owner;
 
                     return (
-                      <div key={utg.userId}>
-                        • {utg.user.name}
-                        {utg.userId === g.group.owner && " (Owner)"}
+                      <div key={user.id}>
+                        • {user.name}
+                        {user.id === group.owner && " (Owner)"}
                         <Button
                           disabled={userIsOwner}
                           variant="destructive"
                           onClick={() =>
                             removeUserFromGroup.mutate({
-                              userId: utg.userId,
-                              groupId: g.groupId,
+                              userId: user.id,
+                              groupId: group.id,
                             })
                           }
                         >
@@ -68,11 +71,11 @@ export function GroupsList(props: {
                 </div>
 
                 <div className="flex gap-1">
-                  <InviteMemberButton groupId={g.groupId} />
+                  <InviteMemberButton groupId={group.id} />
 
                   <Button
                     variant="destructive"
-                    onClick={() => deleteGroup.mutate(g.groupId)}
+                    onClick={() => deleteGroup.mutate(group.id)}
                   >
                     Delete group
                   </Button>
