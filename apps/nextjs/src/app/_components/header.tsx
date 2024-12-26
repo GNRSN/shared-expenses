@@ -12,7 +12,10 @@ export default async function Header() {
       <nav className="items-left mx-auto flex p-6 shadow-lg md:justify-center lg:px-8">
         <div className="space-x-4 pr-4 md:flex lg:flex-1">
           <Link href="/">Home</Link>
+
+          <Link href="/groups">Groups</Link>
         </div>
+
         {user ? (
           <div className="flex items-center">
             <p className="m-3 text-sm">Logged in as {user.name}</p>
