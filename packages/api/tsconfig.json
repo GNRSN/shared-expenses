@@ -1,3 +1,8 @@
 {
-  "extends": "@/tsconfig/internal-package.json"
+  "extends": "@/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "types": [
+      "vitest/globals"
+    ]
+  }
 }
