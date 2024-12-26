@@ -27,13 +27,13 @@ export function CreateGroupForm() {
   const createGroup = api.groups.createGroup.useMutation({
     onSuccess: async () => {
       form.reset();
-      await utils.post.invalidate();
+      await utils.groups.invalidate();
     },
     onError: (err) => {
       toast.error(
         err.data?.code === "UNAUTHORIZED"
-          ? "You must be logged in to post"
-          : "Failed to create post",
+          ? "You must be logged in to create a group"
+          : "Failed to create group",
       );
     },
   });
