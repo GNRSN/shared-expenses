@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@acme/ui/button";
 import {
@@ -30,7 +31,9 @@ export function InviteMemberButton({ groupId }: { groupId: string }) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>Invite member</Button>
+        <Button>
+          <PlusCircledIcon className="mr-1" /> Invite member
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form
