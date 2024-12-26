@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { auth, signIn, signOut } from "@acme/auth";
-import { Button } from "@acme/ui/button";
+import { auth, signIn, signOut } from "@/auth";
+import { Button } from "@/ui/button";
 
 export default async function Header() {
   const session = await auth();

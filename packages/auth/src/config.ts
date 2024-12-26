@@ -7,8 +7,8 @@ import { skipCSRFCheck } from "@auth/core";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Github from "next-auth/providers/github";
 
-import { db } from "@acme/db/client";
-import { Account, Session, User } from "@acme/db/schema";
+import { db } from "@/db/client";
+import { Account, Session, User } from "@/db/schema";
 
 import { env } from "../env";
 

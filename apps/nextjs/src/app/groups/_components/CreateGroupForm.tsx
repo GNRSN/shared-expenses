@@ -1,7 +1,7 @@
 "use client";
 
-import { CreateGroupSchema } from "@acme/db/schema";
-import { Button } from "@acme/ui/button";
+import { CreateGroupSchema } from "@/db/schema";
+import { Button } from "@/ui/button";
 import {
   Form,
   FormControl,
@@ -9,9 +9,9 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
+} from "@/ui/form";
+import { Input } from "@/ui/input";
+import { toast } from "@/ui/toast";
 
 import { api } from "~/trpc/react";
 

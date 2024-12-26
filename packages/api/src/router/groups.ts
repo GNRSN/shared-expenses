@@ -1,8 +1,8 @@
-import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { and, eq } from "@acme/db";
-import { CreateGroupSchema, Group, UserToGroup } from "@acme/db/schema";
+import type { TRPCRouterRecord } from "@trpc/server";
+import { and, eq } from "@/db";
+import { CreateGroupSchema, Group, UserToGroup } from "@/db/schema";
 
 import { protectedProcedure } from "../trpc";
 

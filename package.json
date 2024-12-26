@@ -10,11 +10,11 @@
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
-    "db:build": "turbo -F @acme/db build",
-    "db:push": "turbo -F @acme/db push",
-    "db:studio": "turbo -F @acme/db studio",
+    "db:build": "turbo -F @/db build",
+    "db:push": "turbo -F @/db push",
+    "db:studio": "turbo -F @/db studio",
     "dev": "turbo watch dev --continue",
-    "dev:next": "turbo watch dev -F @acme/nextjs...",
+    "dev:next": "turbo watch dev -F @/nextjs...",
     "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
     "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
     "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
@@ -27,7 +27,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
+    "@/prettier-config": "workspace:*",
     "@turbo/gen": "2.3.3",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
@@ -35,7 +35,7 @@
     "turbo": "2.3.3",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@/prettier-config",
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
   }

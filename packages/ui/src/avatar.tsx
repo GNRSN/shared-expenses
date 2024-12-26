@@ -2,7 +2,7 @@
 
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
-import { cn } from "@acme/ui";
+import { cn } from "@/ui";
 
 const Avatar: React.FC<
   React.ComponentPropsWithRef<typeof AvatarPrimitive.Root>
