@@ -6,6 +6,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./avatar": "./src/avatar.tsx",
+    "./badge": "./src/badge.tsx",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./dropdown-menu": "./src/dropdown-menu.tsx",
