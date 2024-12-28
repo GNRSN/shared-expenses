@@ -1,12 +1,12 @@
 {
-  "name": "@/nextjs",
+  "name": "@acme/nextjs",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
-    "dev": "pnpm with-env next dev",
+    "dev": "pnpm with-env next dev --turbopack",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "start": "pnpm with-env next start",
@@ -14,11 +14,11 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@/api": "workspace:*",
-    "@/auth": "workspace:*",
-    "@/db": "workspace:*",
-    "@/ui": "workspace:*",
-    "@/validators": "workspace:*",
+    "@acme/api": "workspace:*",
+    "@acme/auth": "workspace:*",
+    "@acme/db": "workspace:*",
+    "@acme/ui": "workspace:*",
+    "@acme/validators": "workspace:*",
     "@t3-oss/env-nextjs": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
@@ -32,10 +32,10 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@/eslint-config": "workspace:*",
-    "@/prettier-config": "workspace:*",
-    "@/tailwind-config": "workspace:*",
-    "@/tsconfig": "workspace:*",
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
@@ -46,5 +46,5 @@
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@/prettier-config"
+  "prettier": "@acme/prettier-config"
 }

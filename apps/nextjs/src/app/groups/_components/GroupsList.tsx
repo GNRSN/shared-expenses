@@ -7,23 +7,23 @@ import {
   MinusCircledIcon,
 } from "@radix-ui/react-icons";
 
-import type { RouterOutputs } from "@/api";
-import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
-import { Badge } from "@/ui/badge";
-import { Button } from "@/ui/button";
+import type { RouterOutputs } from "@acme/api";
+import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
+import { Badge } from "@acme/ui/badge";
+import { Button } from "@acme/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/ui/card";
+} from "@acme/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu";
+} from "@acme/ui/dropdown-menu";
 
 import { api } from "~/trpc/react";
 import { InviteMemberButton } from "./InviteMemberForm";

@@ -1,5 +1,5 @@
 {
-  "name": "@/ui",
+  "name": "@acme/ui",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -40,10 +40,10 @@
     "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
-    "@/eslint-config": "workspace:*",
-    "@/prettier-config": "workspace:*",
-    "@/tailwind-config": "workspace:*",
-    "@/tsconfig": "workspace:*",
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
@@ -55,5 +55,5 @@
     "react": "catalog:",
     "zod": "catalog:"
   },
-  "prettier": "@/prettier-config"
+  "prettier": "@acme/prettier-config"
 }
