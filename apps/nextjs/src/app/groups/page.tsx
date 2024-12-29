@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { auth } from "@acme/auth";
+import { auth } from "@@/auth";
 
 import { api } from "~/trpc/server";
 import { CreateGroupForm } from "./_components/CreateGroupForm";

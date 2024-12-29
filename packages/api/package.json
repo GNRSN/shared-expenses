@@ -1,5 +1,5 @@
 {
-  "name": "@acme/api",
+  "name": "@@/api",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -21,17 +21,17 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@acme/auth": "workspace:*",
-    "@acme/db": "workspace:*",
-    "@acme/validators": "workspace:*",
+    "@@/auth": "workspace:*",
+    "@@/db": "workspace:*",
+    "@@/validators": "workspace:*",
     "@trpc/server": "catalog:",
     "superjson": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@@/eslint-config": "workspace:*",
+    "@@/prettier-config": "workspace:*",
+    "@@/tsconfig": "workspace:*",
     "dotenv-cli": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
@@ -39,5 +39,5 @@
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@@/prettier-config"
 }

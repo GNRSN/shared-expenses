@@ -1,21 +1,21 @@
 import { mergeRouters } from "@trpc/server/unstable-core-do-not-import";
 import { vi } from "vitest";
 
-import type { Session } from "@acme/auth";
+import type { Session } from "@@/auth";
 // NOTE: In test environment, this will point to local sqlite db instead of Turso
 // (controlled though env var)
-import { db } from "@acme/db/client";
-import { runDevMigrations } from "@acme/db/utils";
+import { db } from "@@/db/client";
+import { runDevMigrations } from "@@/db/utils";
 
 import type { TRPCContext } from "./trpc";
 import { appRouter } from ".";
 import { testOnlyRouter } from "./router/test-only";
 import { createCallerFactory, createTRPCRouter } from "./trpc";
 
-// Mock @acme/auth module
+// Mock @@/auth module
 // We didn't end up consuming it for now but importing it has side effects,
 // e.g. validate env
-vi.mock("@acme/auth", () => ({
+vi.mock("@@/auth", () => ({
   auth: vi.fn(),
   validateToken: vi.fn(),
 }));

@@ -1,7 +1,7 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { User } from "@acme/db/schema";
+import { User } from "@@/db/schema";
 
 import { protectedProcedure } from "../trpc";
 
