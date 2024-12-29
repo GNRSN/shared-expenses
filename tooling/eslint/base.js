@@ -81,6 +81,13 @@ export default tseslint.config(
     },
   },
   {
+    // Relax code quality rules in tests
+    files: ["**/*.spec.ts"],
+    rules: {
+      "@typescript-eslint/no-non-null-assertion": "off",
+    },
+  },
+  {
     linterOptions: { reportUnusedDisableDirectives: true },
     languageOptions: { parserOptions: { projectService: true } },
   },
