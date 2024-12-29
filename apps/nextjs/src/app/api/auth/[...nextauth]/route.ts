@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { handlers, isSecureContext } from "@acme/auth";
+import { handlers, isSecureContext } from "@@/auth";
 
 export const runtime = "edge";
 
+// TODO: This will likely need to be updated after monorepo rename
 const EXPO_COOKIE_NAME = "__acme-expo-redirect-state";
 const AUTH_COOKIE_PATTERN = /authjs\.session-token=([^;]+)/;
 
