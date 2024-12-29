@@ -1,7 +1,7 @@
-import type { Session } from "@/auth";
 import { mergeRouters } from "@trpc/server/unstable-core-do-not-import";
 import { vi } from "vitest";
 
+import type { Session } from "@acme/auth";
 // NOTE: In test environment, this will point to local sqlite db instead of Turso
 // (controlled though env var)
 import { db } from "@acme/db/client";
