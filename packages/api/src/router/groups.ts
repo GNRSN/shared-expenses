@@ -1,8 +1,8 @@
+import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import type { TRPCRouterRecord } from "@trpc/server";
-import { and, eq } from "@/db";
-import { CreateGroupSchema, Group, UserToGroup } from "@/db/schema";
+import { and, eq } from "@acme/db";
+import { CreateGroupSchema, Group, UserToGroup } from "@acme/db/schema";
 
 import { protectedProcedure } from "../trpc";
 
@@ -73,6 +73,8 @@ export const groupsRouter = {
   removeUserFromGroup: protectedProcedure
     .input(z.object({ userId: z.string(), groupId: z.string() }))
     .mutation(({ ctx, input }) => {
+      // TODO: Should only allowed by owner
+
       return ctx.db
         .delete(UserToGroup)
         .where(
@@ -86,6 +88,8 @@ export const groupsRouter = {
   deleteGroup: protectedProcedure
     .input(z.string())
     .mutation(({ ctx, input }) => {
+      // TODO: Should only allowed by owner
+
       return ctx.db.delete(Group).where(eq(Group.id, input));
     }),
 } satisfies TRPCRouterRecord;

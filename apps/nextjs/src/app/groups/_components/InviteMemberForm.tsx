@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 
-import { Button } from "@/ui/button";
+import { Button } from "@acme/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,9 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/ui/dialog";
-import { Input } from "@/ui/input";
-import { Label } from "@/ui/label";
+} from "@acme/ui/dialog";
+import { Input } from "@acme/ui/input";
+import { Label } from "@acme/ui/label";
 
 import { api } from "~/trpc/react";
 

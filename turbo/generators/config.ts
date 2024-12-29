@@ -1,5 +1,4 @@
 import { execSync } from "node:child_process";
-
 import type { PlopTypes } from "@turbo/gen";
 
 interface PackageJson {
@@ -17,7 +16,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: "input",
         name: "name",
         message:
-          "What is the name of the package? (You can skip the `@/` prefix)",
+          "What is the name of the package? (You can skip the `@acme/` prefix)",
       },
       {
         type: "input",
@@ -29,8 +28,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     actions: [
       (answers) => {
         if ("name" in answers && typeof answers.name === "string") {
-          if (answers.name.startsWith("@/")) {
-            answers.name = answers.name.replace("@/", "");
+          if (answers.name.startsWith("@acme/")) {
+            answers.name = answers.name.replace("@acme/", "");
           }
         }
         return "Config sanitized";

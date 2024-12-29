@@ -10,9 +10,12 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import type { Session } from "@/auth";
-import { auth, validateToken } from "@/auth";
-import { db } from "@/db/client";
+import type { Session } from "@acme/auth";
+import { auth, validateToken } from "@acme/auth";
+import { db } from "@acme/db/client";
+
+import { env } from "../../db/env";
+import { ERROR } from "./codes";
 
 /**
  * Isomorphic Session getter for API requests
@@ -53,6 +56,7 @@ export const createTRPCContext = async (opts: {
     token: authToken,
   };
 };
+export type TRPCContext = Awaited<ReturnType<typeof createTRPCContext>>;
 
 /**
  * 2. INITIALIZATION
@@ -100,7 +104,7 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   const start = Date.now();
   let devMessage = "";
 
-  if (t._config.isDev) {
+  if (t._config.isDev && env.NODE_ENV !== "test") {
     // artificial delay in dev 100-500ms
     const waitMs = Math.floor(Math.random() * 400) + 100;
     await new Promise((resolve) => setTimeout(resolve, waitMs));
@@ -109,8 +113,10 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
 
   const result = await next();
 
-  const end = Date.now();
-  console.log(`[TRPC] ${path} took ${end - start}ms to execute`, devMessage);
+  if (env.NODE_ENV !== "test") {
+    const end = Date.now();
+    console.log(`[TRPC] ${path} took ${end - start}ms to execute`, devMessage);
+  }
 
   return result;
 });
@@ -136,7 +142,7 @@ export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(({ ctx, next }) => {
     if (!ctx.session?.user) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
+      throw new TRPCError({ code: ERROR.UNAUTHORIZED });
     }
     return next({
       ctx: {

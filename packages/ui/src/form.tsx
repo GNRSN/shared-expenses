@@ -17,7 +17,7 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-import { cn } from "@/ui";
+import { cn } from "@acme/ui";
 
 import { Label } from "./label";
 

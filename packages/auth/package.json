@@ -1,5 +1,5 @@
 {
-  "name": "@/auth",
+  "name": "@acme/auth",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@/db": "workspace:*",
+    "@acme/db": "workspace:*",
     "@auth/core": "catalog:",
     "@auth/drizzle-adapter": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
@@ -29,14 +29,14 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@/eslint-config": "workspace:*",
-    "@/prettier-config": "workspace:*",
-    "@/tsconfig": "workspace:*",
+    "@acme/eslint-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@/prettier-config"
+  "prettier": "@acme/prettier-config"
 }

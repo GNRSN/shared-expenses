@@ -1,4 +1,4 @@
-import baseConfig, { restrictEnvAccess } from "@/eslint-config/base";
+import baseConfig, { restrictEnvAccess } from "@acme/eslint-config/base";
 
 /** @type {import('typescript-eslint').Config} */
 export default [
