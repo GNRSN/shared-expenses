@@ -18,12 +18,17 @@
       "outputs": [".cache/.prettiercache"],
       "outputLogs": "new-only"
     },
+    // REVIEW: Unsure about naming convention for this task. Prepare:dev?
+    "generate:dev": {
+      "dependsOn": ["^generate:dev"],
+      "outputs": ["drizzle-dev/**"]
+    },
     "lint": {
       "dependsOn": ["^topo", "^build"],
       "outputs": [".cache/.eslintcache"]
     },
     "test": {
-      "dependsOn": ["^topo", "^build"]
+      "dependsOn": ["^topo", "^build", "^generate:dev"]
     },
     "typecheck": {
       "dependsOn": ["^topo", "^build"],
