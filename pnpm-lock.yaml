@@ -380,6 +380,9 @@ importers:
       "@acme/tsconfig":
         specifier: workspace:*
         version: link:../../tooling/typescript
+      dotenv-cli:
+        specifier: "catalog:"
+        version: 7.4.4
       eslint:
         specifier: "catalog:"
         version: 9.16.0(jiti@2.4.1)
