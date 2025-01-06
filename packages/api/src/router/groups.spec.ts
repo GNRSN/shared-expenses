@@ -61,4 +61,9 @@ describe("groups router", () => {
       ).toBeTruthy();
     });
   });
+
+  describe("transferring ownership", () => {
+    it.todo("allows transferring ownership");
+    it.todo("throws if user is not the current owner");
+  });
 });
