@@ -14,6 +14,6 @@
     ],
     "module": "esnext"
   },
-  "include": [".", ".next/types/**/*.ts"],
+  "include": [".", ".storybook/**/*.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
