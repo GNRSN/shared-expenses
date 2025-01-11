@@ -51,4 +51,6 @@ dist/
 # turbo
 .turbo
 
+# storybook
+storybook-static/
 *storybook.log
