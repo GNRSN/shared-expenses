@@ -44,6 +44,9 @@
       "cache": false,
       "interactive": true
     },
+    "storybook": {
+      "cache": false
+    },
     "studio": {
       "cache": false,
       "persistent": true
