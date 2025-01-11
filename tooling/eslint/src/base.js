@@ -40,8 +40,9 @@ export const restrictEnvAccess = tseslint.config(
 
 export default tseslint.config(
   // Ignore files not tracked by VCS and any config files
-  includeIgnoreFile(path.join(import.meta.dirname, "../../.gitignore")),
-  { ignores: ["**/*.config.*"] },
+  // LATER: Since DB has its own gitignore file, it wont be discovered here
+  includeIgnoreFile(path.join(import.meta.dirname, "../../../.gitignore")),
+  // { ignores: ["**/*.config.*"] },
   {
     files: ["**/*.js", "**/*.ts", "**/*.tsx"],
     plugins: {
@@ -89,6 +90,8 @@ export default tseslint.config(
   },
   {
     linterOptions: { reportUnusedDisableDirectives: true },
-    languageOptions: { parserOptions: { projectService: true } },
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir: process.cwd() },
+    },
   },
 );

@@ -4,13 +4,14 @@
   "version": "0.3.0",
   "type": "module",
   "exports": {
-    "./base": "./base.js",
-    "./nextjs": "./nextjs.js",
-    "./react": "./react.js"
+    "./base": "./src/base.js",
+    "./nextjs": "./src/nextjs.js",
+    "./react": "./src/react.js"
   },
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

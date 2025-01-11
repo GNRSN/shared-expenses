@@ -5,9 +5,9 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [tsconfigPaths()],
   resolve: {
-    // alias: {
-    //   "@": fileURLToPath(new URL("./node_modules/@/", import.meta.url)),
-    // },
+    alias: {
+      "~": fileURLToPath(new URL("./src/", import.meta.url)),
+    },
   },
   test: {
     globals: true,
