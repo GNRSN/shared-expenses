@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@@/ui";
+import { cn } from "@@/ui/utils";
 
 const Card: React.FC<React.ComponentPropsWithRef<"div">> = ({
   className,

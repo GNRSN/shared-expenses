@@ -4,7 +4,6 @@ import { use } from "react";
 
 import type { RouterOutputs } from "@@/api";
 import { CreatePostSchema } from "@@/db/schema";
-import { cn } from "@@/ui";
 import { Button } from "@@/ui/button";
 import {
   Form,
@@ -16,6 +15,7 @@ import {
 } from "@@/ui/form";
 import { Input } from "@@/ui/input";
 import { toast } from "@@/ui/toast";
+import { cn } from "@@/ui/utils";
 
 import { api } from "~/trpc/react";
 
