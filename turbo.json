@@ -44,8 +44,12 @@
       "cache": false,
       "interactive": true
     },
-    "storybook": {
+    "sb": {
       "cache": false
+    },
+    "sb:build": {
+      "dependsOn": ["^build"],
+      "outputs": ["storybook-static/**"]
     },
     "studio": {
       "cache": false,
