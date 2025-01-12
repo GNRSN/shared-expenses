@@ -3,6 +3,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { withTrpcContext } from "~/trpc/storybook";
 import { PostCard, PostCardSkeleton } from "./posts";
 
+/**
+ * POC for NextJS stories, supporting tailwind, fonts, theme and mocking TRPC
+ * when we remove the posts showcase we can get rid of this
+ */
+
 const meta = {
   title: "Posts/Card",
   component: undefined,
