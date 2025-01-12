@@ -2,6 +2,8 @@ import type { Preview } from "@storybook/react";
 
 import "../src/app/globals.css";
 
+import { RootDecorator } from "~/utils/storybook/RootDecorator";
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -11,6 +13,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [RootDecorator],
 };
 
 export default preview;
