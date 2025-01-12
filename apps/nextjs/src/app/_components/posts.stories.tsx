@@ -1,18 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { StorybookTrpcProvider, withTrpcContext } from "~/trpc/storybook";
+import { withTrpcContext } from "~/trpc/storybook";
 import { PostCard, PostCardSkeleton } from "./posts";
 
 const meta = {
   title: "Posts/Card",
   component: undefined,
-  decorators: [
-    (Story) => (
-      <StorybookTrpcProvider>
-        <Story />
-      </StorybookTrpcProvider>
-    ),
-  ],
 } satisfies Meta<typeof PostCardSkeleton>;
 
 export default meta;
