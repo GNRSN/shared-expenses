@@ -9,13 +9,15 @@
     "./badge": "./src/components/badge.tsx",
     "./button": "./src/components/button.tsx",
     "./card": "./src/components/card.tsx",
+    "./dialog": "./src/components/dialog.tsx",
     "./dropdown-menu": "./src/components/dropdown-menu.tsx",
     "./form": "./src/components/form.tsx",
     "./input": "./src/components/input.tsx",
     "./label": "./src/components/label.tsx",
+    "./separator": "./src/components/separator.tsx",
+    "./skeleton": "./src/components/skeleton.tsx",
     "./theme": "./src/components/theme.tsx",
-    "./toast": "./src/components/toast.tsx",
-    "./dialog": "./src/components/dialog.tsx"
+    "./toast": "./src/components/toast.tsx"
   },
   "license": "MIT",
   "scripts": {
