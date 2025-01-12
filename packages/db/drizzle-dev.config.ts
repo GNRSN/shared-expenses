@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { Config } from "drizzle-kit";
 
 export default {
@@ -5,8 +6,8 @@ export default {
   // REVIEW: sqlite or turso for dev?
   dialect: "sqlite",
   dbCredentials: {
-    url: process.env.TURSO_DATABASE_URL! as string,
-    // authToken: process.env.TURSO_AUTH_TOKEN! as string,
+    // eslint-disable-next-line no-restricted-properties
+    url: process.env.TURSO_DATABASE_URL!,
   },
   out: "./drizzle-dev",
   verbose: true,

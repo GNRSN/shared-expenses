@@ -1,16 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
-import { cn } from "@@/ui";
 import { ThemeProvider, ThemeToggle } from "@@/ui/theme";
 import { Toaster } from "@@/ui/toast";
+import { cn } from "@@/ui/utils";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
 
 import { env } from "~/env";
+import { defaultFontsClassName } from "~/utils/fonts";
 import Header from "./_components/header";
 
 const PRODUCTION_DOMAIN =
@@ -45,8 +44,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body
         className={cn(
           "min-h-screen bg-background font-sans text-foreground antialiased",
-          GeistSans.variable,
-          GeistMono.variable,
+          defaultFontsClassName,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

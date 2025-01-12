@@ -4,7 +4,6 @@ import { use } from "react";
 
 import type { RouterOutputs } from "@@/api";
 import { CreatePostSchema } from "@@/db/schema";
-import { cn } from "@@/ui";
 import { Button } from "@@/ui/button";
 import {
   Form,
@@ -15,6 +14,7 @@ import {
   useForm,
 } from "@@/ui/form";
 import { Input } from "@@/ui/input";
+import { Skeleton } from "@@/ui/skeleton";
 import { toast } from "@@/ui/toast";
 
 import { api } from "~/trpc/react";
@@ -150,27 +150,12 @@ export function PostCard(props: {
   );
 }
 
-export function PostCardSkeleton(props: { pulse?: boolean }) {
-  const { pulse = true } = props;
+export function PostCardSkeleton() {
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
       <div className="flex-grow">
-        <h2
-          className={cn(
-            "w-1/4 rounded bg-primary text-2xl font-bold",
-            pulse && "animate-pulse",
-          )}
-        >
-          &nbsp;
-        </h2>
-        <p
-          className={cn(
-            "mt-2 w-1/3 rounded bg-current text-sm",
-            pulse && "animate-pulse",
-          )}
-        >
-          &nbsp;
-        </p>
+        <Skeleton as="h2" className="w-1/4 rounded text-2xl font-bold" />
+        <Skeleton as="p" className="mt-2 w-1/3 rounded text-sm" />
       </div>
     </div>
   );
