@@ -7,6 +7,21 @@ import { CreateGroupSchema, Group, UserToGroup } from "@@/db/schema";
 import { protectedProcedure } from "../trpc";
 
 export const groupsRouter = {
+  getGroup: protectedProcedure
+    .input(z.object({ groupId: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.db.query.Group.findFirst({
+        where: eq(Group.id, input.groupId),
+        with: {
+          userToGroup: {
+            columns: {},
+            with: {
+              user: true,
+            },
+          },
+        },
+      });
+    }),
   getForCurrentUser: protectedProcedure.query(({ ctx }) => {
     /**
      *REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
