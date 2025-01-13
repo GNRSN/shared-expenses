@@ -52,7 +52,10 @@ export function CreateGroupForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Title" />
+                <Input
+                  {...field}
+                  placeholder="Title"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -29,7 +29,10 @@ export function InviteMemberButton({ groupId }: { groupId: string }) {
     },
   });
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={setIsOpen}
+    >
       <DialogTrigger asChild>
         <Button>
           <PlusCircledIcon className="mr-1" /> Invite member
@@ -50,7 +53,10 @@ export function InviteMemberButton({ groupId }: { groupId: string }) {
             </DialogDescription>
           </DialogHeader>
           <div className="my-4">
-            <Label htmlFor="userId" className="text-center">
+            <Label
+              htmlFor="userId"
+              className="text-center"
+            >
               user id
             </Label>
             <Input

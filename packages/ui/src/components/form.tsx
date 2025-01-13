@@ -12,8 +12,8 @@ import { createContext, use, useId } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Slot } from "@radix-ui/react-slot";
 import {
-  useForm as __useForm,
   Controller,
+  useForm as __useForm,
   useFormContext,
 } from "react-hook-form";
 
@@ -93,7 +93,10 @@ function FormItem({ className, ...props }: ComponentProps<"div">) {
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div className={cn("space-y-2", className)} {...props} />
+      <div
+        className={cn("space-y-2", className)}
+        {...props}
+      />
     </FormItemContext.Provider>
   );
 }

@@ -57,7 +57,10 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Title" />
+                <Input
+                  {...field}
+                  placeholder="Title"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +72,10 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Content" />
+                <Input
+                  {...field}
+                  placeholder="Content"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,7 +114,12 @@ export function PostList(props: {
   return (
     <div className="flex w-full flex-col gap-4">
       {posts.map((p) => {
-        return <PostCard key={p.id} post={p} />;
+        return (
+          <PostCard
+            key={p.id}
+            post={p}
+          />
+        );
       })}
     </div>
   );
@@ -154,8 +165,14 @@ export function PostCardSkeleton() {
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
       <div className="flex-grow">
-        <Skeleton as="h2" className="w-1/4 rounded text-2xl font-bold" />
-        <Skeleton as="p" className="mt-2 w-1/3 rounded text-sm" />
+        <Skeleton
+          as="h2"
+          className="w-1/4 rounded text-2xl font-bold"
+        />
+        <Skeleton
+          as="p"
+          className="mt-2 w-1/3 rounded text-sm"
+        />
       </div>
     </div>
   );

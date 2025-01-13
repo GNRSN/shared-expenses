@@ -19,7 +19,10 @@ const CardHeader: React.FC<React.ComponentPropsWithRef<"div">> = ({
   className,
   ...props
 }) => (
-  <div className={cn("flex flex-col space-y-1.5 p-6", className)} {...props} />
+  <div
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
 );
 
 const CardTitle: React.FC<React.ComponentPropsWithRef<"div">> = ({
@@ -36,19 +39,30 @@ const CardDescription: React.FC<React.ComponentPropsWithRef<"div">> = ({
   className,
   ...props
 }) => (
-  <div className={cn("text-sm text-muted-foreground", className)} {...props} />
+  <div
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
 );
 
 const CardContent: React.FC<React.ComponentPropsWithRef<"div">> = ({
   className,
   ...props
-}) => <div className={cn("p-6 pt-0", className)} {...props} />;
+}) => (
+  <div
+    className={cn("p-6 pt-0", className)}
+    {...props}
+  />
+);
 
 const CardFooter: React.FC<React.ComponentPropsWithRef<"div">> = ({
   className,
   ...props
 }) => (
-  <div className={cn("flex items-center p-6 pt-0", className)} {...props} />
+  <div
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
 );
 
 export {

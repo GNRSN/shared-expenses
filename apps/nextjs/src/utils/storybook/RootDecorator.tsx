@@ -14,7 +14,11 @@ export const RootDecorator: Decorator = (Story, context) => {
         defaultFontsClassName,
       )}
     >
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem
+      >
         <StorybookTrpcProvider>
           <Story {...context} />
         </StorybookTrpcProvider>
