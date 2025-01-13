@@ -21,6 +21,7 @@
     "@@/db": "workspace:*",
     "@@/ui": "workspace:*",
     "@@/validators": "workspace:*",
+    "@radix-ui/react-icons": "catalog:",
     "@t3-oss/env-nextjs": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",

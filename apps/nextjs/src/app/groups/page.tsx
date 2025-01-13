@@ -1,6 +1,16 @@
 import { Suspense } from "react";
+import Link from "next/link";
+import { HomeIcon } from "@radix-ui/react-icons";
 
 import { auth } from "@@/auth";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@@/ui/breadcrumb";
 
 import { api } from "~/trpc/server";
 import { CreateGroupForm } from "./_components/CreateGroupForm";
@@ -17,11 +27,26 @@ export default async function GroupsPage() {
 
   return (
     <main className="container h-screen py-16">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">
+                <HomeIcon />
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>
+              <BreadcrumbLink asChild>
+                <Link href="/groups">Groups</Link>
+              </BreadcrumbLink>
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Your groups
-        </h1>
-
         <CreateGroupForm />
 
         <div className="w-full max-w-2xl overflow-y-auto">
