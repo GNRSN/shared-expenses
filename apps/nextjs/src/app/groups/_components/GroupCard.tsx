@@ -69,7 +69,10 @@ export function GroupCard({ group }: { group: GroupData["group"] }) {
               )}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                  >
                     <DotsHorizontalIcon className="mr-1" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -116,7 +119,10 @@ export function GroupCardMinimal({ group }: { group: GroupData["group"] }) {
             // REVIEW: Sorting?
             group.userToGroup.map(({ user }) => {
               return (
-                <Avatar key={user.id} className="ml-[-0.5rem] h-6 w-6">
+                <Avatar
+                  key={user.id}
+                  className="ml-[-0.5rem] h-6 w-6"
+                >
                   <AvatarImage
                     src={user.image ?? undefined}
                     alt={user.name ?? undefined}

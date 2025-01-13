@@ -25,7 +25,10 @@ export function GroupsList(props: {
       ) : (
         <div className="flex w-full flex-col gap-4">
           {groupsForUser.map(({ group }) => (
-            <GroupCardMinimal key={group.id} group={group} />
+            <GroupCardMinimal
+              key={group.id}
+              group={group}
+            />
           ))}
         </div>
       )}
