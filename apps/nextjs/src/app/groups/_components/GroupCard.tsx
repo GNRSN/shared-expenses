@@ -100,7 +100,7 @@ export function GroupCard({ group }: { group: GroupData["group"] }) {
 
         <Button
           variant="destructive"
-          onClick={() => deleteGroup.mutate(group.id)}
+          onClick={() => deleteGroup.mutate({ groupId: group.id })}
         >
           <CrossCircledIcon className="mr-1" /> Delete group
         </Button>
