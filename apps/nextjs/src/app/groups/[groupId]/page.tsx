@@ -11,7 +11,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@@/ui/breadcrumb";
-import { Skeleton } from "@@/ui/skeleton";
 
 import { api } from "~/trpc/server";
 import { GroupCard } from "../_components/GroupCard";
@@ -47,14 +46,7 @@ export default async function GroupIdPage({
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>
-              <Suspense
-                key={groupId}
-                fallback={<Skeleton className="w-12" />}
-              >
-                {group?.title ?? "??"}
-              </Suspense>
-            </BreadcrumbPage>
+            <BreadcrumbPage>{group?.title ?? "??"}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
