@@ -6,9 +6,9 @@
  * tl;dr - this is where all the tRPC server stuff is created and plugged in.
  * The pieces you will need to use are documented accordingly near the end
  */
-import { initTRPC, TRPCError } from "@trpc/server";
+import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
-import { ZodError } from "zod";
+import { ZodError, z } from "zod";
 
 import type { Session } from "@@/auth";
 import { auth, validateToken } from "@@/auth";
@@ -121,6 +121,18 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   return result;
 });
 
+const authenticationMiddleware = t.middleware(async ({ next, ctx }) => {
+  if (!ctx.session?.user) {
+    throw new TRPCError({ code: ERROR.UNAUTHORIZED });
+  }
+  return next({
+    ctx: {
+      // infers the `session` as non-nullable
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
+});
+
 /**
  * Public (unauthed) procedure
  *
@@ -140,14 +152,51 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  */
 export const protectedProcedure = t.procedure
   .use(timingMiddleware)
-  .use(({ ctx, next }) => {
-    if (!ctx.session?.user) {
-      throw new TRPCError({ code: ERROR.UNAUTHORIZED });
+  .use(authenticationMiddleware);
+
+// TODO: test
+export const groupMemberProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(authenticationMiddleware)
+  .input(z.object({ groupId: z.string().cuid2() }))
+  .use(async ({ ctx, next, input }) => {
+    const hasRelationToGroup = !!(await ctx.db.query.UserToGroup.findFirst({
+      where: (UserToGroup, { eq, and }) =>
+        and(
+          eq(UserToGroup.userId, ctx.session.user.id),
+          eq(UserToGroup.groupId, input.groupId),
+        ),
+    }));
+
+    if (!hasRelationToGroup) {
+      throw new TRPCError({
+        code: ERROR.FORBIDDEN,
+        message: "User is not part of the group or it does not exist",
+      });
     }
-    return next({
-      ctx: {
-        // infers the `session` as non-nullable
-        session: { ...ctx.session, user: ctx.session.user },
+
+    return next();
+  });
+
+// TODO: test
+export const groupOwnerProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(authenticationMiddleware)
+  .input(z.object({ groupId: z.string().cuid2() }))
+  .use(async ({ ctx, next, input }) => {
+    const group = await ctx.db.query.Group.findFirst({
+      where: (Group, { eq }) => eq(Group.id, input.groupId),
+      columns: {
+        owner: true,
       },
     });
+
+    if (!group || group.owner !== ctx.session.user.id) {
+      throw new TRPCError({
+        code: ERROR.FORBIDDEN,
+        message: "User is not the owner of the group or it does not exist",
+      });
+    }
+
+    return next();
   });

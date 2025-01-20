@@ -4,9 +4,27 @@ import { z } from "zod";
 import { and, eq } from "@@/db";
 import { CreateGroupSchema, Group, UserToGroup } from "@@/db/schema";
 
-import { protectedProcedure } from "../trpc";
+import {
+  groupMemberProcedure,
+  groupOwnerProcedure,
+  protectedProcedure,
+} from "../trpc";
 
 export const groupsRouter = {
+  getGroup: groupMemberProcedure.query(({ ctx, input }) => {
+    return ctx.db.query.Group.findFirst({
+      where: eq(Group.id, input.groupId),
+      with: {
+        userToGroup: {
+          columns: {},
+          with: {
+            user: true,
+          },
+        },
+      },
+    });
+  }),
+
   getForCurrentUser: protectedProcedure.query(({ ctx }) => {
     /**
      *REVIEW: I'm not confident that this is the correct way to query relations with drizzle?
@@ -64,17 +82,15 @@ export const groupsRouter = {
       return groupResult;
     }),
 
-  addUserToGroup: protectedProcedure
-    .input(z.object({ userId: z.string(), groupId: z.string() }))
+  addUserToGroup: groupOwnerProcedure
+    .input(z.object({ userId: z.string().cuid2() }))
     .mutation(({ ctx, input }) => {
       return ctx.db.insert(UserToGroup).values(input);
     }),
 
-  removeUserFromGroup: protectedProcedure
-    .input(z.object({ userId: z.string(), groupId: z.string() }))
+  removeUserFromGroup: groupOwnerProcedure
+    .input(z.object({ userId: z.string().cuid2() }))
     .mutation(({ ctx, input }) => {
-      // TODO: Should only allowed by owner
-
       return ctx.db
         .delete(UserToGroup)
         .where(
@@ -85,11 +101,7 @@ export const groupsRouter = {
         );
     }),
 
-  deleteGroup: protectedProcedure
-    .input(z.string())
-    .mutation(({ ctx, input }) => {
-      // TODO: Should only allowed by owner
-
-      return ctx.db.delete(Group).where(eq(Group.id, input));
-    }),
+  deleteGroup: groupOwnerProcedure.mutation(({ ctx, input }) => {
+    return ctx.db.delete(Group).where(eq(Group.id, input.groupId));
+  }),
 } satisfies TRPCRouterRecord;

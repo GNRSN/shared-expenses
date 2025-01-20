@@ -22,7 +22,10 @@ export const StorybookTrpcProvider = ({ children }: PropsWithChildren) => {
     }),
   );
   return (
-    <api.Provider client={trpcClient} queryClient={queryClient}>
+    <api.Provider
+      client={trpcClient}
+      queryClient={queryClient}
+    >
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </api.Provider>
   );

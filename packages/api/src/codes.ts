@@ -1,3 +1,5 @@
 export const ERROR = {
   UNAUTHORIZED: "UNAUTHORIZED",
+  BAD_REQUEST: "BAD_REQUEST",
+  FORBIDDEN: "FORBIDDEN",
 } as const;
