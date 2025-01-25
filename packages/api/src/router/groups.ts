@@ -89,7 +89,7 @@ export const groupsRouter = {
     }),
 
   removeUserFromGroup: groupOwnerProcedure
-    .input(z.object({ userId: z.string().cuid2() }))
+    .input(z.object({ userId: z.string().uuid() }))
     .mutation(({ ctx, input }) => {
       return ctx.db
         .delete(UserToGroup)
@@ -99,6 +99,15 @@ export const groupsRouter = {
             eq(UserToGroup.groupId, input.groupId),
           ),
         );
+    }),
+
+  makeMemberOwner: groupOwnerProcedure
+    .input(z.object({ userId: z.string().uuid() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.db
+        .update(Group)
+        .set({ owner: input.userId })
+        .where(eq(Group.id, input.groupId));
     }),
 
   deleteGroup: groupOwnerProcedure.mutation(({ ctx, input }) => {

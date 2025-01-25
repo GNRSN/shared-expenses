@@ -5,6 +5,7 @@ import {
   CrossCircledIcon,
   DotsHorizontalIcon,
   MinusCircledIcon,
+  PlusCircledIcon,
 } from "@radix-ui/react-icons";
 
 import type { RouterOutputs } from "@@/api";
@@ -44,6 +45,7 @@ export function GroupCard({
       await utils.groups.getForCurrentUser.invalidate();
     },
   });
+  const makeMemberOwner = api.groups.makeMemberOwner.useMutation();
 
   return (
     <Card>
@@ -83,6 +85,18 @@ export function GroupCard({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  {!userIsOwner && (
+                    <DropdownMenuItem
+                      onClick={() => {
+                        makeMemberOwner.mutate({
+                          userId: user.id,
+                          groupId: group.id,
+                        });
+                      }}
+                    >
+                      <PlusCircledIcon className="mr-1" /> Make member owner
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuItem
                     disabled={userIsOwner}
                     onClick={() =>
