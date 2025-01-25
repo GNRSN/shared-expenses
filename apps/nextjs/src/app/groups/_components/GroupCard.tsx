@@ -30,7 +30,13 @@ import { InviteMemberButton } from "./InviteMemberForm";
 
 type GroupData = RouterOutputs["groups"]["getForCurrentUser"][number];
 
-export function GroupCard({ group }: { group: GroupData["group"] }) {
+export function GroupCard({
+  group,
+  sessionId,
+}: {
+  group: GroupData["group"];
+  sessionId: string;
+}) {
   const utils = api.useUtils();
   const deleteGroup = api.groups.deleteGroup.useMutation();
   const removeUserFromGroup = api.groups.removeUserFromGroup.useMutation({
@@ -97,13 +103,14 @@ export function GroupCard({ group }: { group: GroupData["group"] }) {
 
       <CardFooter className="flex gap-2">
         <InviteMemberButton groupId={group.id} />
-
-        <Button
-          variant="destructive"
-          onClick={() => deleteGroup.mutate({ groupId: group.id })}
-        >
-          <CrossCircledIcon className="mr-1" /> Delete group
-        </Button>
+        {group.owner === sessionId && (
+          <Button
+            variant="destructive"
+            onClick={() => deleteGroup.mutate({ groupId: group.id })}
+          >
+            <CrossCircledIcon className="mr-1" /> Delete group
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
