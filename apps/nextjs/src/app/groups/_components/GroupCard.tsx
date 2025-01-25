@@ -132,6 +132,7 @@ export function GroupCard({
                   <Button
                     variant="ghost"
                     size="sm"
+                    onClick={() => setConfirmMakeMemberOwner(false)}
                   >
                     No
                   </Button>
