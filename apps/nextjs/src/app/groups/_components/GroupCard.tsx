@@ -124,6 +124,7 @@ export function GroupCard({
                         userId: user.id,
                         groupId: group.id,
                       });
+                      setConfirmMakeMemberOwner(false);
                     }}
                   >
                     Yes
