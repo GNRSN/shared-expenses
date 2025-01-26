@@ -65,7 +65,7 @@ export default async function GroupIdPage({
             {!!group && (
               <GroupCard
                 group={group}
-                sessionId={session.user.id}
+                userId={session.user.id}
               />
             )}
           </div>

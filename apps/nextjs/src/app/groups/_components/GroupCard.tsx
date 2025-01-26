@@ -34,10 +34,10 @@ type GroupData = RouterOutputs["groups"]["getForCurrentUser"][number];
 
 export function GroupCard({
   group,
-  sessionId,
+  userId,
 }: {
   group: GroupData["group"];
-  sessionId: string;
+  userId: string;
 }) {
   const utils = api.useUtils();
   const deleteGroup = api.groups.deleteGroup.useMutation();
@@ -145,7 +145,7 @@ export function GroupCard({
 
       <CardFooter className="flex gap-2">
         <InviteMemberButton groupId={group.id} />
-        {group.owner === sessionId && (
+        {group.owner === userId && (
           <Button
             variant="destructive"
             onClick={() => deleteGroup.mutate({ groupId: group.id })}
