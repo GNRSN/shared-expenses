@@ -62,7 +62,12 @@ export default async function GroupIdPage({
             {!group && (
               <div>Group does not exist or you do not have access to it</div>
             )}
-            {!!group && <GroupCard group={group} />}
+            {!!group && (
+              <GroupCard
+                group={group}
+                userId={session.user.id}
+              />
+            )}
           </div>
         </Suspense>
       </div>

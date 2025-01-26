@@ -101,6 +101,15 @@ export const groupsRouter = {
         );
     }),
 
+  makeMemberOwner: groupOwnerProcedure
+    .input(z.object({ userId: z.string().cuid2() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.db
+        .update(Group)
+        .set({ owner: input.userId })
+        .where(eq(Group.id, input.groupId));
+    }),
+
   deleteGroup: groupOwnerProcedure.mutation(({ ctx, input }) => {
     return ctx.db.delete(Group).where(eq(Group.id, input.groupId));
   }),
