@@ -48,8 +48,6 @@ export function GroupCard({
   });
   const makeMemberOwner = api.groups.makeMemberOwner.useMutation();
 
-  const [confirmMakeMemberOwner, setConfirmMakeMemberOwner] = useState(false);
-
   return (
     <Card>
       <CardHeader>
@@ -113,31 +111,6 @@ export function GroupCard({
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              {/*TODO: Confirm dialog needed so we make sure they are sure*/}
-              {confirmMakeMemberOwner && (
-                <div className="mt-2 flex justify-end gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      makeMemberOwner.mutate({
-                        userId: user.id,
-                        groupId: group.id,
-                      });
-                      setConfirmMakeMemberOwner(false);
-                    }}
-                  >
-                    Yes
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setConfirmMakeMemberOwner(false)}
-                  >
-                    No
-                  </Button>
-                </div>
-              )}
             </div>
           );
         })}
