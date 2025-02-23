@@ -2,10 +2,10 @@
   "name": "shared-expenses-monorepo",
   "private": true,
   "engines": {
-    "node": ">=22.10.0",
-    "pnpm": ">=9.12.3"
+    "node": ">=22.12.0",
+    "pnpm": ">=10.4.1"
   },
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "build": "turbo run build",
     "clean": "git clean -xdf node_modules",
@@ -22,6 +22,7 @@
     "lint:ws": "pnpm dlx sherif@latest",
     "postinstall": "pnpm lint:ws",
     "test": "turbo run test",
+    "t": "turbo",
     "turbo": "turbo",
     "typecheck": "turbo run typecheck",
     "ui-add": "turbo run ui-add",
