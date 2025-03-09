@@ -69,7 +69,10 @@ export default async function GroupIdPage({
             )}
             {!!group && (
               <>
-                <GroupCard group={group} />
+                <GroupCard
+                  group={group}
+                  userId={session.user.id}
+                />
 
                 <AddTransactionFormPromptButton
                   userId={session.user.id}
