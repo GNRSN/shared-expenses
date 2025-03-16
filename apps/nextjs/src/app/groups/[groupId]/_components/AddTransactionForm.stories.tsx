@@ -29,7 +29,7 @@ export const Example: Story = {
       <AddTransactionForm
         userId="1"
         groupId="1"
-        onSuccess={() => window.alert("success")}
+        collapseForm={() => window.alert("collapse form")}
       />
     </Card>
   ),

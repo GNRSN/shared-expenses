@@ -40,7 +40,7 @@ export function AddTransactionFormPromptButton({
         <AddTransactionForm
           userId={userId}
           groupId={groupId}
-          onSuccess={() => setOpen(false)}
+          collapseForm={() => setOpen(false)}
         />
       </DialogContent>
     </Dialog>

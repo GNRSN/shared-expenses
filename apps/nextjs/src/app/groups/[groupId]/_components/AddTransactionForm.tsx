@@ -5,13 +5,13 @@ import { z } from "zod";
 import { Button } from "@@/ui/button";
 import { Calendar } from "@@/ui/calendar";
 import {
+  Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  // TODO: swc failed compilation on "Form"?
-  Form as FormWrapper,
+  FormSubmitButton,
   useForm,
 } from "@@/ui/form";
 import { Input } from "@@/ui/input";
@@ -39,21 +39,21 @@ const formSchema = z.object({
 export const AddTransactionForm = ({
   userId,
   groupId,
-  onSuccess,
+  collapseForm,
 }: {
   userId: string;
   groupId: string;
-  onSuccess: () => void;
+  collapseForm: () => void;
 }) => {
   const form = useForm({
     schema: formSchema,
     defaultValues: {
       title: "",
-      // LATER: Get preferred currency for group
       currency: "USD",
       amount: 0,
       note: "",
       date: new Date(),
+      paidBy: userId,
     },
   });
 
@@ -61,7 +61,7 @@ export const AddTransactionForm = ({
   const addExpense = api.transactions.addExpense.useMutation({
     onSuccess: async () => {
       await utils.transactions.invalidate();
-      onSuccess();
+      collapseForm();
       form.reset();
     },
   });
@@ -82,7 +82,7 @@ export const AddTransactionForm = ({
   const limitLowerBound = new Date("2021-01-01");
 
   return (
-    <FormWrapper {...form}>
+    <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4"
@@ -211,14 +211,13 @@ export const AddTransactionForm = ({
             </FormItem>
           )}
         />
-
-        <Button
-          type="submit"
+        <FormSubmitButton
           className="w-full"
+          mutation={addExpense}
         >
           Add Transaction
-        </Button>
+        </FormSubmitButton>
       </form>
-    </FormWrapper>
+    </Form>
   );
 };
