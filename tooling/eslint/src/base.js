@@ -79,6 +79,9 @@ export default tseslint.config(
       "@typescript-eslint/no-non-null-assertion": "error",
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
       "@stylistic/semi": ["warn"],
+
+      // This rules enforces interfaces over types, I'm not a fan
+      "@typescript-eslint/consistent-type-definitions": "off",
     },
   },
   {
