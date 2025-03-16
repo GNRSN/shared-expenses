@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import { mergeRouters } from "@trpc/server/unstable-core-do-not-import";
 import { vi } from "vitest";
 
@@ -25,7 +26,7 @@ await runDevMigrations(db);
 // Mock session data
 export const mockSession = {
   user: {
-    id: "test-user-id",
+    id: createId(),
     name: "Test User",
     email: "test@example.com",
     image: null,

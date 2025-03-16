@@ -18,15 +18,25 @@ export const transactionsRouter = {
   addExpense: groupMemberProcedure
     .input(CreateTransactionSchema)
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.insert(Transaction).values({
-        groupId: input.groupId,
-        amount: input.amount,
-        description: input.description,
-        userId: input.userId,
-        currency: input.currency,
-        type: "expense",
-        date: input.date,
-      });
+      const [result] = await ctx.db
+        .insert(Transaction)
+        .values({
+          groupId: input.groupId,
+          amount: input.amount,
+          description: input.description,
+          userId: input.userId,
+          currency: input.currency,
+          type: "expense",
+          date: input.date,
+        })
+        .returning({ insertedId: Transaction.id });
+
+      if (!result) {
+        throw new Error(
+          "Type guard: Did not return insertedId. Transaction not created?",
+        );
+      }
+      return result;
     }),
 
   addSettlement: groupMemberProcedure

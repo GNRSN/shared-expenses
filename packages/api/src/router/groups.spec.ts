@@ -42,11 +42,11 @@ describe("groups router", () => {
         title: "Test Group",
       });
 
-      expect(result[0]).toHaveProperty("insertedId");
+      expect(result).toHaveProperty("insertedId");
 
       expect(
         await ctx.db.query.Group.findFirst({
-          where: (groups, { eq }) => eq(groups.id, result[0]!.insertedId),
+          where: (groups, { eq }) => eq(groups.id, result.insertedId),
         }),
       ).toHaveProperty("owner", mockSession.user.id);
 
@@ -54,7 +54,7 @@ describe("groups router", () => {
         await ctx.db.query.UserToGroup.findFirst({
           where: (usersToGroups, { eq, and }) =>
             and(
-              eq(usersToGroups.groupId, result[0]!.insertedId),
+              eq(usersToGroups.groupId, result.insertedId),
               eq(usersToGroups.userId, mockSession.user.id),
             ),
         }),

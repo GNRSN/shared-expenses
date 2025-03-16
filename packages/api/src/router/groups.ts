@@ -62,12 +62,12 @@ export const groupsRouter = {
   createGroup: protectedProcedure
     .input(CreateGroupSchema)
     .mutation(async ({ ctx, input }) => {
-      const groupResult = await ctx.db
+      const [groupResult] = await ctx.db
         .insert(Group)
         .values({ ...input, owner: ctx.session.user.id })
         .returning({ insertedId: Group.id });
 
-      const groupId = groupResult[0]?.insertedId;
+      const groupId = groupResult?.insertedId;
       if (!groupId) {
         throw new Error(
           "Type guard: Did not return insertedId. Group not created?",
