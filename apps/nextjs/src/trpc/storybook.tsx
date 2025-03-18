@@ -3,7 +3,8 @@ import type { PropsWithChildren } from "react";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/react-query";
-import superjson from "superjson";
+
+import { transformer } from "@@/api/transformer";
 
 import { api, getBaseUrl } from "./react";
 
@@ -15,7 +16,7 @@ export const StorybookTrpcProvider = ({ children }: PropsWithChildren) => {
     api.createClient({
       links: [
         httpBatchLink({
-          transformer: superjson,
+          transformer,
           url: getBaseUrl() + "/api/trpc",
         }),
       ],
