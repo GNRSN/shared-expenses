@@ -15,6 +15,7 @@ import {
 import { api } from "~/trpc/server";
 import { GroupCard } from "../_components/GroupCard";
 import { AddTransactionFormPromptButton } from "./_components/AddTransactionFormPromptButton";
+import { TransactionsList } from "./_components/TransactionsList";
 
 export const runtime = "edge";
 
@@ -28,7 +29,7 @@ export default async function GroupIdPage({
   const { groupId } = await params;
   const group = await api.groups.getGroup({ groupId });
 
-  const transactions = await api.transactions.getTransactionsForGroup({
+  const transactions = api.transactions.getTransactionsForGroup({
     groupId,
   });
 
@@ -81,15 +82,10 @@ export default async function GroupIdPage({
               </>
             )}
 
-            <div>
-              {transactions.map((transaction) => {
-                return (
-                  <div key={transaction.id}>
-                    {transaction.amount}${transaction.description}
-                  </div>
-                );
-              })}
-            </div>
+            <TransactionsList
+              groupId={groupId}
+              transactions={transactions}
+            />
           </div>
         </Suspense>
       </div>
