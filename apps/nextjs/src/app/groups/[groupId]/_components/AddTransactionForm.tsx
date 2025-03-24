@@ -71,10 +71,7 @@ export const AddTransactionForm = ({
       // LATER: Should be able to select other user to log expenses for others
       userId,
       groupId,
-      amount: values.amount,
-      description: values.note,
-      currency: values.currency,
-      date: values.date,
+      ...values,
     });
   }
 

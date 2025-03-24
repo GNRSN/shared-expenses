@@ -21,13 +21,8 @@ export const transactionsRouter = {
       const [result] = await ctx.db
         .insert(Transaction)
         .values({
-          groupId: input.groupId,
-          amount: input.amount,
-          description: input.description,
-          userId: input.userId,
-          currency: input.currency,
+          ...input,
           type: "expense",
-          date: input.date,
         })
         .returning({ insertedId: Transaction.id });
 
@@ -43,13 +38,8 @@ export const transactionsRouter = {
     .input(CreateTransactionSchema)
     .mutation(async ({ ctx, input }) => {
       return ctx.db.insert(Transaction).values({
-        groupId: input.groupId,
-        amount: input.amount,
-        description: input.description,
-        userId: input.userId,
-        currency: input.currency,
+        ...input,
         type: "settlement",
-        date: input.date,
       });
     }),
 } satisfies TRPCRouterRecord;

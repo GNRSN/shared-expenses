@@ -17,7 +17,8 @@ describe("transactions router", () => {
       const result = await caller.transactions.addExpense({
         userId: mockSession.user.id,
         groupId: group.insertedId,
-        description: "",
+        title: "Test Expense",
+        note: "",
         amount: 100,
         currency: "USD",
         date: new Date("2025-03-15"),

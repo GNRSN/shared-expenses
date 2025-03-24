@@ -169,7 +169,8 @@ export const Transaction = sqliteTable("transaction", {
   /** Visually differentiate between an expense and a transfer (e.g. settlement) */
   type: text("type", { enum: ["expense", "settlement"] }).notNull(),
   date: integer("date", { mode: "timestamp_ms" }).notNull(),
-  description: text("description", { length: 256 }).notNull(),
+  title: text("title", { length: 48 }).notNull(),
+  note: text("note", { length: 256 }).notNull(),
   amount: integer("amount").notNull(),
   currency: text("currency", { enum: AVAILABLE_CURRENCIES }).notNull(),
   userId: text("user_id")
@@ -185,7 +186,6 @@ export const Transaction = sqliteTable("transaction", {
 export const CreateTransactionSchema = createInsertSchema(Transaction, {
   userId: z.string().cuid2(),
   groupId: z.string().cuid2(),
-  description: z.string().max(256),
 }).omit({
   id: true,
   createdAt: true,
