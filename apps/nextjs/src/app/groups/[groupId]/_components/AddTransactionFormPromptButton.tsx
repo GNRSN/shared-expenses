@@ -30,13 +30,12 @@ export function AddTransactionFormPromptButton({
       onOpenChange={setOpen}
     >
       <DialogTrigger asChild>
-        <Button>Add Transaction</Button>
+        <Button className="mt-2 w-full">Add Transaction</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add New Transaction</DialogTitle>
         </DialogHeader>
-
         <AddTransactionForm
           userId={userId}
           groupId={groupId}
