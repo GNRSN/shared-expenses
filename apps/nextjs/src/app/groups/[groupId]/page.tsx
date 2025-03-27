@@ -14,6 +14,8 @@ import {
 
 import { api } from "~/trpc/server";
 import { GroupCard } from "../_components/GroupCard";
+import { AddTransactionFormPromptButton } from "./_components/AddTransactionFormPromptButton";
+import { TransactionsList } from "./_components/TransactionsList";
 
 export const runtime = "edge";
 
@@ -26,6 +28,10 @@ export default async function GroupIdPage({
   if (!session) return <div>You need to log in to display this page</div>;
   const { groupId } = await params;
   const group = await api.groups.getGroup({ groupId });
+
+  const transactions = api.transactions.getTransactionsForGroup({
+    groupId,
+  });
 
   return (
     <main className="container h-screen py-16">
@@ -63,11 +69,23 @@ export default async function GroupIdPage({
               <div>Group does not exist or you do not have access to it</div>
             )}
             {!!group && (
-              <GroupCard
-                group={group}
-                userId={session.user.id}
-              />
+              <>
+                <GroupCard
+                  group={group}
+                  userId={session.user.id}
+                />
+
+                <AddTransactionFormPromptButton
+                  userId={session.user.id}
+                  groupId={group.id}
+                />
+              </>
             )}
+
+            <TransactionsList
+              groupId={groupId}
+              transactions={transactions}
+            />
           </div>
         </Suspense>
       </div>

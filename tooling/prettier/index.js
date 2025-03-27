@@ -1,8 +1,8 @@
 import { fileURLToPath } from "url";
 
-/** @import {Config as PrettierConfig} from 'prettier'  */
-/** @import {PluginOptions as TailwindConfig} from 'prettier-plugin-tailwindcss'  */
-/** @import {PluginConfig as SortImportsConfig} from '@ianvs/prettier-plugin-sort-imports'  */
+/** @import { Config as PrettierConfig } from 'prettier' */
+/** @import { PluginOptions as TailwindConfig } from 'prettier-plugin-tailwindcss' */
+/** @import { PluginConfig as SortImportsConfig } from '@ianvs/prettier-plugin-sort-imports' */
 
 const config =
   /** @satisfies { PrettierConfig & SortImportsConfig & TailwindConfig } */ ({

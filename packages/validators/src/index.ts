@@ -1,8 +1,13 @@
 import { z } from "zod";
 
-export const unused = z.string().describe(
-  `This lib is currently not used as we use drizzle-zod for simple schemas
-   But as your application grows and you need other validators to share
-   with back and frontend, you can put them in here
-  `,
-);
+export const AVAILABLE_CURRENCIES = [
+  "USD",
+  "CAD",
+  "EUR",
+  "GBP",
+  "JPY",
+  "AUD",
+  "NZD",
+] as const;
+
+export const zCurrencyEnum = z.enum(AVAILABLE_CURRENCIES);

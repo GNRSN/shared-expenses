@@ -12,6 +12,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    nextjs: {
+      // DOC: https://storybook.js.org/docs/get-started/frameworks/nextjs#set-nextjsappdirectory-to-true
+      appDirectory: true,
+    },
   },
   decorators: [RootDecorator],
 };

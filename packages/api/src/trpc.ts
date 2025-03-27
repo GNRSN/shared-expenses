@@ -7,7 +7,6 @@
  * The pieces you will need to use are documented accordingly near the end
  */
 import { TRPCError, initTRPC } from "@trpc/server";
-import superjson from "superjson";
 import { ZodError, z } from "zod";
 
 import type { Session } from "@@/auth";
@@ -16,6 +15,7 @@ import { db } from "@@/db/client";
 
 import { env } from "../../db/env";
 import { ERROR } from "./codes";
+import { transformer } from "./transformer";
 
 /**
  * Isomorphic Session getter for API requests
@@ -65,7 +65,7 @@ export type TRPCContext = Awaited<ReturnType<typeof createTRPCContext>>;
  * transformer
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
+  transformer,
   errorFormatter: ({ shape, error }) => ({
     ...shape,
     data: {

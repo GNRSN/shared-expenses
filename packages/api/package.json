@@ -7,13 +7,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
-    }
+    },
+    "./transformer": "./src/transformer.ts"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --noCheck",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
+    "dev": "tsc --noCheck",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "test": "dotenv -e ./test.env -- vitest run",
@@ -25,7 +26,7 @@
     "@@/db": "workspace:*",
     "@@/validators": "workspace:*",
     "@trpc/server": "catalog:",
-    "superjson": "catalog:",
+    "devalue": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

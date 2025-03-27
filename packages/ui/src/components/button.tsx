@@ -27,10 +27,15 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
       },
+      highlightState: {
+        default: "",
+        error: "text-red-500",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      highlightState: "default",
     },
   },
 );
