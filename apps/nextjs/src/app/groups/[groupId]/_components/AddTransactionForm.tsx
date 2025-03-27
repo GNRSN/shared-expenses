@@ -28,7 +28,7 @@ import { AVAILABLE_CURRENCIES, zCurrencyEnum } from "@@/validators";
 import { api } from "~/trpc/react";
 
 const formSchema = z.object({
-  amount: z.number().min(0.01, "Amount must be greater than 0"),
+  amount: z.coerce.number().min(0.01, "Amount must be greater than 0"),
   currency: zCurrencyEnum,
   title: z.string().min(1, "Title is required"),
   date: z.date(),
@@ -113,7 +113,11 @@ export const AddTransactionForm = ({
                   step="0.01"
                   placeholder="0.00"
                   {...field}
-                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                  onChange={(e) => {
+                    field.onChange(
+                      e.target.value === "" ? "" : parseInt(e.target.value),
+                    );
+                  }}
                 />
               </FormControl>
               <FormMessage />
