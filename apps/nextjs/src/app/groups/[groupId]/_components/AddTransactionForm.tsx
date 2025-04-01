@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { Button } from "@@/ui/button";
 import { Calendar } from "@@/ui/calendar";
+import { Combobox } from "@@/ui/combobox";
 import {
   Form,
   FormControl,
@@ -152,6 +153,28 @@ export const AddTransactionForm = ({
                     ))}
                   </SelectContent>
                 </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="currency"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Currency</FormLabel>
+              <FormControl>
+                <Combobox
+                  value={field.value}
+                  onChange={field.onChange}
+                  items={AVAILABLE_CURRENCIES.map((currency) => ({
+                    label: currency,
+                    value: currency,
+                  }))}
+                  terminology={{ itemName: "currency" }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
