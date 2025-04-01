@@ -9,6 +9,7 @@
     "./badge": "./src/components/badge.tsx",
     "./breadcrumb": "./src/components/breadcrumb.tsx",
     "./calendar": "./src/components/calendar.tsx",
+    "./combobox": "./src/components/combobox.tsx",
     "./button": "./src/components/button.tsx",
     "./card": "./src/components/card.tsx",
     "./command": "./src/components/command.tsx",
