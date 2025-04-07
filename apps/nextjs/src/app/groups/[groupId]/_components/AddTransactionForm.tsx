@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { Button } from "@@/ui/button";
 import { Calendar } from "@@/ui/calendar";
+import { Combobox } from "@@/ui/combobox";
 import {
   Form,
   FormControl,
@@ -16,13 +17,6 @@ import {
 } from "@@/ui/form";
 import { Input } from "@@/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@@/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@@/ui/select";
 import { AVAILABLE_CURRENCIES, zCurrencyEnum } from "@@/validators";
 
 import { api } from "~/trpc/react";
@@ -124,34 +118,23 @@ export const AddTransactionForm = ({
             </FormItem>
           )}
         />
+
         <FormField
-          // LATER: Maybe should have been a combobox instead?
           control={form.control}
           name="currency"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Currency</FormLabel>
               <FormControl>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {AVAILABLE_CURRENCIES.map((currency) => (
-                      <SelectItem
-                        key={currency}
-                        value={currency}
-                      >
-                        {currency}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Combobox
+                  value={field.value}
+                  onChange={field.onChange}
+                  items={AVAILABLE_CURRENCIES.map((currency) => ({
+                    label: currency,
+                    value: currency,
+                  }))}
+                  terminology={{ itemName: "currency" }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
